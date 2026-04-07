@@ -13,18 +13,19 @@ export default function GlobeSection() {
     if (!canvas) return
 
     const isMobile = window.innerWidth <= 768
-    const globeSize = isMobile ? 600 : 1400
+    const dpr = Math.min(window.devicePixelRatio, 2)
+    const globeSize = isMobile ? 500 : 900
     const globeOffset = [0, 0]
 
     const globeInstance = createGlobe(canvas, {
-      devicePixelRatio: 2,
+      devicePixelRatio: dpr,
       width: globeSize,
       height: globeSize,
       phi: 0,
       theta: 0.2,
       dark: 1,
       diffuse: 1.2,
-      mapSamples: 20000,
+      mapSamples: 12000,
       mapBrightness: 6,
       mapBaseBrightness: 0.05,
       baseColor: [0.02, 0.05, 0.2],
@@ -37,17 +38,9 @@ export default function GlobeSection() {
         { location: [48.8566, 2.3522], size: 0.03 },
         { location: [35.6762, 139.6503], size: 0.03 },
         { location: [-23.5505, -46.6333], size: 0.05 },
-        { location: [1.3521, 103.8198], size: 0.03 },
-        { location: [55.7558, 37.6173], size: 0.03 },
-        { location: [-33.8688, 151.2093], size: 0.03 },
-        { location: [19.4326, -99.1332], size: 0.03 },
         { location: [28.6139, 77.209], size: 0.04 },
-        { location: [-34.6037, -58.3816], size: 0.03 },
-        { location: [31.2304, 121.4737], size: 0.04 },
         { location: [-22.9068, -43.1729], size: 0.04 },
-        { location: [-15.7801, -47.9292], size: 0.04 },
         { location: [52.52, 13.405], size: 0.03 },
-        { location: [22.3193, 114.1694], size: 0.03 },
         { location: [34.0522, -118.2437], size: 0.03 },
       ],
       arcs: [
@@ -56,16 +49,9 @@ export default function GlobeSection() {
         { from: [51.5074, -0.1278], to: [35.6762, 139.6503] },
         { from: [37.7749, -122.4194], to: [22.3193, 114.1694] },
         { from: [40.7128, -74.006], to: [51.5074, -0.1278] },
-        { from: [-33.8688, 151.2093], to: [1.3521, 103.8198] },
-        { from: [28.6139, 77.209], to: [1.3521, 103.8198] },
         { from: [52.52, 13.405], to: [-22.9068, -43.1729] },
-        { from: [-34.6037, -58.3816], to: [19.4326, -99.1332] },
-        { from: [31.2304, 121.4737], to: [55.7558, 37.6173] },
-        { from: [34.0522, -118.2437], to: [48.8566, 2.3522] },
         { from: [-23.5505, -46.6333], to: [28.6139, 77.209] },
-        { from: [22.3193, 114.1694], to: [-33.8688, 151.2093] },
-        { from: [37.5665, 126.978], to: [35.6762, 139.6503] },
-        { from: [41.9028, 12.4964], to: [34.0522, -118.2437] },
+        { from: [34.0522, -118.2437], to: [48.8566, 2.3522] },
       ],
       arcColor: [0.2, 0.5, 1.0],
       offset: globeOffset,
