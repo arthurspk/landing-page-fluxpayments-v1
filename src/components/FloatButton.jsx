@@ -18,22 +18,34 @@ export default function FloatButton() {
 
   return (
     <>
-      <AnimatePresence>
-        {showScrollTop && (
-          <motion.button
-            className="float-scroll-top"
-            onClick={scrollToTop}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            aria-label="Voltar ao topo"
-          >
-            <ArrowUp size={20} />
-          </motion.button>
-        )}
-      </AnimatePresence>
+      <div className="float-stack">
+        <AnimatePresence>
+          {showScrollTop && (
+            <motion.button
+              className="float-scroll-top"
+              onClick={scrollToTop}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Voltar ao topo"
+            >
+              <ArrowUp size={20} />
+            </motion.button>
+          )}
+        </AnimatePresence>
+
+        <motion.button
+          className="float-btn"
+          onClick={() => setShowChat(!showChat)}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          aria-label="Chat"
+        >
+          {showChat ? <X size={24} /> : <MessageCircle size={24} />}
+        </motion.button>
+      </div>
 
       <AnimatePresence>
         {showChat && (
@@ -57,7 +69,7 @@ export default function FloatButton() {
             </div>
             <div className="float-chat__body">
               <div className="float-chat__message">
-                <p>Ola! Como podemos ajudar voce hoje? Estamos prontos para tirar todas as suas duvidas sobre pagamentos internacionais.</p>
+                <p>Olá! Como podemos ajudar você hoje? Estamos prontos para tirar todas as suas dúvidas sobre pagamentos internacionais.</p>
               </div>
             </div>
             <div className="float-chat__footer">
@@ -68,40 +80,19 @@ export default function FloatButton() {
         )}
       </AnimatePresence>
 
-      <motion.button
-        className="float-btn"
-        onClick={() => setShowChat(!showChat)}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        aria-label="Chat"
-      >
-        {showChat ? <X size={24} /> : <MessageCircle size={24} />}
-      </motion.button>
-
       <style>{`
-        .float-btn {
+        .float-stack {
           position: fixed;
           bottom: 24px;
           right: 24px;
           z-index: 999;
-          width: 56px;
-          height: 56px;
-          border-radius: 50%;
-          background: var(--gradient-blue);
-          color: white;
           display: flex;
+          flex-direction: column;
           align-items: center;
-          justify-content: center;
-          border: none;
-          box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
-          cursor: pointer;
+          gap: 12px;
         }
 
         .float-scroll-top {
-          position: fixed;
-          bottom: 24px;
-          right: 92px;
-          z-index: 999;
           width: 44px;
           height: 44px;
           border-radius: 50%;
@@ -115,9 +106,23 @@ export default function FloatButton() {
           backdrop-filter: blur(10px);
         }
 
+        .float-btn {
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          background: var(--gradient-blue);
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: none;
+          box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+          cursor: pointer;
+        }
+
         .float-chat {
           position: fixed;
-          bottom: 92px;
+          bottom: 100px;
           right: 24px;
           z-index: 998;
           width: 360px;
@@ -132,7 +137,7 @@ export default function FloatButton() {
 
         .float-chat__header {
           padding: 16px 20px;
-          background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(30, 64, 175, 0.1));
+          background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(30, 64, 175, 0.15));
           border-bottom: 1px solid var(--border-color);
           display: flex;
           align-items: center;
@@ -183,7 +188,7 @@ export default function FloatButton() {
         }
 
         .float-chat__message {
-          background: rgba(59, 130, 246, 0.08);
+          background: rgba(59, 130, 246, 0.1);
           border: 1px solid var(--border-color);
           border-radius: 12px;
           padding: 14px 16px;

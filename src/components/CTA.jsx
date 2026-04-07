@@ -17,12 +17,12 @@ export default function CTA() {
           <div className="cta__content">
             <div className="section-badge">Comece Hoje Mesmo</div>
             <h2 className="section-title">
-              Pronto para comecar
+              Pronto para começar
               <br />
               <span className="gradient-text">sua jornada global?</span>
             </h2>
             <p className="section-subtitle">
-              Junte-se a mais de <strong>50.000 empresas</strong> que ja estao
+              Junte-se a mais de <strong>50.000 empresas</strong> que já estão
               faturando alto com a Flux Payments.
             </p>
 

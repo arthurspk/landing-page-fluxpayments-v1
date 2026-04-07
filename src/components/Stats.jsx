@@ -5,8 +5,8 @@ import { Users, TrendingUp, ShoppingCart, Percent } from 'lucide-react'
 
 const stats = [
   { icon: Users, value: 50000, suffix: '+', label: 'Clientes Ativos', prefix: '' },
-  { icon: TrendingUp, value: 10, suffix: 'M+', label: 'Transacoes Mensais', prefix: '' },
-  { icon: ShoppingCart, value: 180, suffix: '+', label: 'Paises Atendidos', prefix: '' },
+  { icon: TrendingUp, value: 10, suffix: 'M+', label: 'Transações Mensais', prefix: '' },
+  { icon: ShoppingCart, value: 180, suffix: '+', label: 'Países Atendidos', prefix: '' },
   { icon: Percent, value: 99.9, suffix: '%', label: 'Uptime Garantido', prefix: '' },
 ]
 

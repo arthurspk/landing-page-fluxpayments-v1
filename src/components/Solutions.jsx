@@ -4,23 +4,23 @@ import { CreditCard, QrCode, Receipt, Repeat, Smartphone, Building2 } from 'luci
 const solutions = [
   {
     icon: CreditCard,
-    title: 'Cartao de Credito Internacional',
-    description: 'Aceite Visa, Mastercard, Amex e mais bandeiras internacionais com processamento instantaneo.',
+    title: 'Cartão de Crédito Internacional',
+    description: 'Aceite Visa, Mastercard, Amex e mais bandeiras internacionais com processamento instantâneo.',
   },
   {
     icon: QrCode,
     title: 'Pix & QR Code',
-    description: 'Pagamentos instantaneos via Pix com geracao automatica de QR Code para seus clientes.',
+    description: 'Pagamentos instantâneos via Pix com geração automática de QR Code para seus clientes.',
   },
   {
     icon: Receipt,
-    title: 'Boleto Bancario',
-    description: 'Gere boletos com registro automatico e conciliacao bancaria integrada ao seu sistema.',
+    title: 'Boleto Bancário',
+    description: 'Gere boletos com registro automático e conciliação bancária integrada ao seu sistema.',
   },
   {
     icon: Repeat,
     title: 'Pagamentos Recorrentes',
-    description: 'Assinaturas e cobrancas recorrentes automatizadas com gestao completa de planos.',
+    description: 'Assinaturas e cobranças recorrentes automatizadas com gestão completa de planos.',
   },
   {
     icon: Smartphone,
@@ -30,7 +30,7 @@ const solutions = [
   {
     icon: Building2,
     title: 'Split de Pagamento',
-    description: 'Divida pagamentos entre multiplos recebedores de forma automatica e transparente.',
+    description: 'Divida pagamentos entre múltiplos recebedores de forma automática e transparente.',
   },
 ]
 
@@ -45,15 +45,15 @@ export default function Solutions() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="section-badge">Solucoes de Pagamento</div>
+            <div className="section-badge">Soluções de Pagamento</div>
             <h2 className="section-title">
               Mais do que uma plataforma,
               <br />
               <span className="gradient-text">um parceiro de sucesso</span>
             </h2>
             <p className="section-subtitle">
-              Entendemos que vender online vai alem de colocar um produto no ar.
-              E sobre ter estrutura, apoio e ferramentas que realmente funcionam.
+              Entendemos que vender online vai além de colocar um produto no ar.
+              É sobre ter estrutura, apoio e ferramentas que realmente funcionam.
             </p>
           </motion.div>
         </div>

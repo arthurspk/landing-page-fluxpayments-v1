@@ -1,9 +1,10 @@
 import { Globe, Link2, Send, MessageSquare } from 'lucide-react'
+import logoPrincipal from '../assets/logos/logo-principal.png'
 
 const footerLinks = {
-  Produto: ['Checkout', 'Pagamentos', 'Recorrencia', 'Split', 'Link de Pagamento'],
-  Empresa: ['Sobre nos', 'Carreiras', 'Blog', 'Contato'],
-  Suporte: ['Central de Ajuda', 'Documentacao', 'Status da API', 'Comunidade'],
+  Produto: ['Checkout', 'Pagamentos', 'Recorrência', 'Split', 'Link de Pagamento'],
+  Empresa: ['Sobre nós', 'Carreiras', 'Blog', 'Contato'],
+  Suporte: ['Central de Ajuda', 'Documentação', 'Status da API', 'Comunidade'],
   Legal: ['Termos de Uso', 'Privacidade', 'Compliance', 'PCI-DSS'],
 }
 
@@ -14,20 +15,10 @@ export default function Footer() {
         <div className="footer__top">
           <div className="footer__brand">
             <a href="#hero" className="footer__logo">
-              <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-                <rect width="32" height="32" rx="8" fill="url(#footer-grad)" />
-                <text x="16" y="22" fontFamily="Inter" fontWeight="800" fontSize="18" fill="white" textAnchor="middle">F</text>
-                <defs>
-                  <linearGradient id="footer-grad" x1="0" y1="0" x2="32" y2="32">
-                    <stop stopColor="#3B82F6" />
-                    <stop offset="1" stopColor="#1E40AF" />
-                  </linearGradient>
-                </defs>
-              </svg>
-              <span>Flux <span className="footer__logo-accent">Payments</span></span>
+              <img src={logoPrincipal} alt="Flux Payments" className="footer__logo-img" />
             </a>
             <p className="footer__description">
-              A plataforma internacional de pagamentos para transformar seu negocio em uma operacao global, segura e escalavel.
+              A plataforma internacional de pagamentos para transformar seu negócio em uma operação global, segura e escalável.
             </p>
             <div className="footer__social">
               <a href="#" aria-label="Instagram"><Globe size={18} /></a>
@@ -81,18 +72,12 @@ export default function Footer() {
         .footer__logo {
           display: flex;
           align-items: center;
-          gap: 10px;
-          font-size: 20px;
-          font-weight: 700;
-          color: var(--text-primary);
           margin-bottom: 16px;
         }
 
-        .footer__logo-accent {
-          background: var(--gradient-blue);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
+        .footer__logo-img {
+          height: 36px;
+          width: auto;
         }
 
         .footer__description {

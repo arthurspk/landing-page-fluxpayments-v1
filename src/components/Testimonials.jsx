@@ -5,19 +5,19 @@ const testimonials = [
   {
     name: 'Maria Silva',
     role: 'CEO, Digital Commerce',
-    text: 'A plataforma transformou meu negocio digital. Em 3 meses, multipliquei meus resultados por 5x. O suporte internacional e excepcional.',
+    text: 'A plataforma transformou meu negócio digital. Em 3 meses, multipliquei meus resultados por 5x. O suporte internacional é excepcional.',
     rating: 5,
   },
   {
-    name: 'Joao Santos',
+    name: 'João Santos',
     role: 'CTO, TechPay Solutions',
-    text: 'Melhor decisao que tomei foi migrar para a Flux Payments. Suporte excepcional, ferramentas incriveis e taxas muito competitivas.',
+    text: 'Melhor decisão que tomei foi migrar para a Flux Payments. Suporte excepcional, ferramentas incríveis e taxas muito competitivas.',
     rating: 5,
   },
   {
     name: 'Ana Costa',
     role: 'Fundadora, ShopGlobal',
-    text: 'Consegui automatizar todo meu processo de vendas internacionais. A integracao via API e realmente impecavel e o suporte 24/7 faz toda diferenca.',
+    text: 'Consegui automatizar todo meu processo de vendas internacionais. A integração via API é realmente impecável e o suporte 24/7 faz toda diferença.',
     rating: 5,
   },
 ]
@@ -32,14 +32,14 @@ export default function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="section-badge">Avaliacao de Clientes</div>
+            <div className="section-badge">Avaliação de Clientes</div>
             <h2 className="section-title">
               O que nossos
               <br />
               <span className="gradient-text">clientes dizem</span>
             </h2>
             <p className="section-subtitle">
-              Milhares de empresas ja transformaram seus negocios com nossa plataforma de pagamentos internacionais.
+              Milhares de empresas já transformaram seus negócios com nossa plataforma de pagamentos internacionais.
             </p>
           </motion.div>
         </div>

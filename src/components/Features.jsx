@@ -12,37 +12,37 @@ const features = [
   {
     icon: CreditCard,
     title: 'Checkout Otimizado',
-    description: 'Conversao de alto nivel com multiplas formas de pagamento, aceite cartoes e e-wallets internacionais.',
+    description: 'Conversão de alto nível com múltiplas formas de pagamento, aceite cartões e e-wallets internacionais.',
     color: '#3b82f6',
   },
   {
     icon: ShieldCheck,
     title: 'Pagamentos Seguros',
-    description: 'Processamento seguro com criptografia de ponta, certificacao PCI-DSS e protecao contra fraudes.',
+    description: 'Processamento seguro com criptografia de ponta, certificação PCI-DSS e proteção contra fraudes.',
     color: '#60a5fa',
   },
   {
     icon: Globe,
     title: 'Vendas Globais',
-    description: 'Alcance clientes em mais de 180 paises com suporte a multiplas moedas e metodos de pagamento locais.',
+    description: 'Alcance clientes em mais de 180 países com suporte a múltiplas moedas e métodos de pagamento locais.',
     color: '#2563eb',
   },
   {
     icon: BarChart3,
     title: 'Analytics Completo',
-    description: 'Dashboard detalhado para acompanhar todas as suas metricas de vendas e conversao em tempo real.',
+    description: 'Dashboard detalhado para acompanhar todas as suas métricas de vendas e conversão em tempo real.',
     color: '#1d4ed8',
   },
   {
     icon: FileCheck,
-    title: 'Conformidade Regulatoria',
+    title: 'Conformidade Regulatória',
     description: 'Esteja sempre em conformidade com as principais normas e leis financeiras internacionais.',
     color: '#1e40af',
   },
   {
     icon: Code2,
-    title: 'API Escalavel',
-    description: 'Integracao facil com as principais plataformas e-commerce e sistemas personalizados via API RESTful.',
+    title: 'API Escalável',
+    description: 'Integração fácil com as principais plataformas e-commerce e sistemas personalizados via API RESTful.',
     color: '#3b82f6',
   },
 ]
@@ -59,13 +59,13 @@ export default function Features() {
           >
             <div className="section-badge">Recursos Completos</div>
             <h2 className="section-title">
-              Tudo que voce precisa para
+              Tudo que você precisa para
               <br />
-              <span className="gradient-text">escalar seu negocio</span>
+              <span className="gradient-text">escalar seu negócio</span>
             </h2>
             <p className="section-subtitle">
               Uma suite completa de ferramentas para aceitar pagamentos internacionais
-              com seguranca e eficiencia.
+              com segurança e eficiência.
             </p>
           </motion.div>
         </div>

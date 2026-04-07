@@ -1,107 +1,93 @@
-import { useEffect, useRef, useCallback } from 'react'
+import { useEffect, useRef } from 'react'
 import createGlobe from 'cobe'
 import { motion } from 'framer-motion'
+
+const arcs = [
+  { from: [-23.5505, -46.6333], to: [-22.9068, -43.1729] },
+  { from: [28.6139, 77.209], to: [1.3521, 103.8198] },
+  { from: [-23.5505, -46.6333], to: [40.7128, -74.006] },
+  { from: [51.5074, -0.1278], to: [35.6762, 139.6503] },
+  { from: [-15.7801, -47.9292], to: [48.8566, 2.3522] },
+  { from: [37.7749, -122.4194], to: [22.3193, 114.1694] },
+  { from: [-33.8688, 151.2093], to: [1.3521, 103.8198] },
+  { from: [40.7128, -74.006], to: [51.5074, -0.1278] },
+  { from: [52.52, 13.405], to: [-22.9068, -43.1729] },
+  { from: [-34.6037, -58.3816], to: [19.4326, -99.1332] },
+  { from: [31.2304, 121.4737], to: [55.7558, 37.6173] },
+  { from: [34.0522, -118.2437], to: [48.8566, 2.3522] },
+  { from: [-6.2088, 106.8456], to: [51.5074, -0.1278] },
+  { from: [22.3193, 114.1694], to: [-33.8688, 151.2093] },
+  { from: [37.5665, 126.978], to: [35.6762, 139.6503] },
+  { from: [41.9028, 12.4964], to: [34.0522, -118.2437] },
+  { from: [49.2827, -123.1207], to: [52.3676, 4.9041] },
+  { from: [-15.7801, -47.9292], to: [28.6139, 77.209] },
+]
 
 export default function GlobeSection() {
   const canvasRef = useRef(null)
   const pointerInteracting = useRef(null)
   const pointerInteractionMovement = useRef(0)
   const phiRef = useRef(0)
-  const globeRef = useRef(null)
-  const frameRef = useRef(null)
-
-  const setupGlobe = useCallback(() => {
-    if (!canvasRef.current) return
-
-    if (globeRef.current) {
-      globeRef.current.destroy()
-    }
-
-    const container = canvasRef.current.parentElement
-    const size = container.clientWidth
-
-    canvasRef.current.width = size * 2
-    canvasRef.current.height = size * 2
-    canvasRef.current.style.width = size + 'px'
-    canvasRef.current.style.height = size + 'px'
-
-    globeRef.current = createGlobe(canvasRef.current, {
-      devicePixelRatio: 2,
-      width: size * 2,
-      height: size * 2,
-      phi: 0,
-      theta: 0.3,
-      dark: 1,
-      diffuse: 3,
-      mapSamples: 16000,
-      mapBrightness: 1.2,
-      baseColor: [0.15, 0.2, 0.35],
-      markerColor: [0.23, 0.51, 0.96],
-      glowColor: [0.1, 0.2, 0.4],
-      markers: [
-        { location: [37.7749, -122.4194], size: 0.08 },
-        { location: [40.7128, -74.006], size: 0.08 },
-        { location: [51.5074, -0.1278], size: 0.07 },
-        { location: [48.8566, 2.3522], size: 0.06 },
-        { location: [35.6762, 139.6503], size: 0.07 },
-        { location: [-23.5505, -46.6333], size: 0.08 },
-        { location: [1.3521, 103.8198], size: 0.06 },
-        { location: [55.7558, 37.6173], size: 0.06 },
-        { location: [-33.8688, 151.2093], size: 0.06 },
-        { location: [19.4326, -99.1332], size: 0.06 },
-        { location: [28.6139, 77.209], size: 0.07 },
-        { location: [-34.6037, -58.3816], size: 0.05 },
-        { location: [31.2304, 121.4737], size: 0.07 },
-        { location: [-22.9068, -43.1729], size: 0.06 },
-      ],
-      onRender: (state) => {
-        if (!pointerInteracting.current) {
-          phiRef.current += 0.003
-        }
-        state.phi = phiRef.current + pointerInteractionMovement.current
-      },
-    })
-  }, [])
 
   useEffect(() => {
-    // Small delay to ensure the container has rendered with its full size
-    frameRef.current = requestAnimationFrame(() => {
-      setupGlobe()
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const globeInstance = createGlobe(canvas, {
+      devicePixelRatio: 2,
+      width: 1000,
+      height: 1000,
+      phi: 0,
+      theta: 0.2,
+      dark: 1,
+      diffuse: 1.2,
+      mapSamples: 20000,
+      mapBrightness: 6,
+      mapBaseBrightness: 0.02,
+      baseColor: [0.024, 0.08, 0.34],
+      markerColor: [0.3, 0.55, 1.0],
+      glowColor: [0.04, 0.08, 0.28],
+      markers: [
+        { location: [37.7749, -122.4194], size: 0.04 },
+        { location: [40.7128, -74.006], size: 0.04 },
+        { location: [51.5074, -0.1278], size: 0.03 },
+        { location: [48.8566, 2.3522], size: 0.03 },
+        { location: [35.6762, 139.6503], size: 0.03 },
+        { location: [-23.5505, -46.6333], size: 0.05 },
+        { location: [1.3521, 103.8198], size: 0.03 },
+        { location: [55.7558, 37.6173], size: 0.03 },
+        { location: [-33.8688, 151.2093], size: 0.03 },
+        { location: [19.4326, -99.1332], size: 0.03 },
+        { location: [28.6139, 77.209], size: 0.04 },
+        { location: [-34.6037, -58.3816], size: 0.03 },
+        { location: [31.2304, 121.4737], size: 0.04 },
+        { location: [-22.9068, -43.1729], size: 0.04 },
+        { location: [-15.7801, -47.9292], size: 0.04 },
+        { location: [52.52, 13.405], size: 0.03 },
+        { location: [22.3193, 114.1694], size: 0.03 },
+        { location: [34.0522, -118.2437], size: 0.03 },
+      ],
+      arcs,
+      arcColor: [0.15, 0.45, 0.95],
     })
 
-    const handleResize = () => {
-      setupGlobe()
+    let animationId
+    const animate = () => {
+      animationId = requestAnimationFrame(animate)
+      if (!pointerInteracting.current) {
+        phiRef.current += 0.003
+      }
+      globeInstance.update({
+        phi: phiRef.current + pointerInteractionMovement.current,
+      })
     }
-
-    window.addEventListener('resize', handleResize)
+    animate()
 
     return () => {
-      if (globeRef.current) {
-        globeRef.current.destroy()
-      }
-      if (frameRef.current) {
-        cancelAnimationFrame(frameRef.current)
-      }
-      window.removeEventListener('resize', handleResize)
+      cancelAnimationFrame(animationId)
+      globeInstance.destroy()
     }
-  }, [setupGlobe])
-
-  const onPointerDown = (e) => {
-    pointerInteracting.current = e.clientX - pointerInteractionMovement.current
-    if (canvasRef.current) canvasRef.current.style.cursor = 'grabbing'
-  }
-
-  const onPointerUp = () => {
-    pointerInteracting.current = null
-    if (canvasRef.current) canvasRef.current.style.cursor = 'grab'
-  }
-
-  const onPointerMove = (e) => {
-    if (pointerInteracting.current !== null) {
-      const delta = e.clientX - pointerInteracting.current
-      pointerInteractionMovement.current = delta / 200
-    }
-  }
+  }, [])
 
   return (
     <section id="globe" className="globe-section">
@@ -117,20 +103,20 @@ export default function GlobeSection() {
           >
             <div className="section-badge">Cobertura Global</div>
             <h2 className="section-title">
-              Seu negocio conectado
+              Seu negócio conectado
               <br />
               <span className="gradient-text">ao mundo inteiro</span>
             </h2>
             <p className="section-subtitle">
-              Com a Flux Payments, voce aceita pagamentos de mais de 180 paises,
-              em multiplas moedas, com conversao automatica e as melhores taxas
+              Com a Flux Payments, você aceita pagamentos de mais de 180 países,
+              em múltiplas moedas, com conversão automática e as melhores taxas
               do mercado internacional.
             </p>
 
             <div className="globe-section__highlights">
               <div className="globe-section__highlight">
                 <div className="globe-section__highlight-dot" />
-                <span>Americas, Europa e Asia</span>
+                <span>Américas, Europa e Ásia</span>
               </div>
               <div className="globe-section__highlight">
                 <div className="globe-section__highlight-dot" />
@@ -138,11 +124,11 @@ export default function GlobeSection() {
               </div>
               <div className="globe-section__highlight">
                 <div className="globe-section__highlight-dot" />
-                <span>Conversao automatica</span>
+                <span>Conversão automática</span>
               </div>
               <div className="globe-section__highlight">
                 <div className="globe-section__highlight-dot" />
-                <span>Liquidacao em ate 24h</span>
+                <span>Liquidação em até 24h</span>
               </div>
             </div>
           </motion.div>
@@ -156,11 +142,25 @@ export default function GlobeSection() {
           >
             <canvas
               ref={canvasRef}
-              onPointerDown={onPointerDown}
-              onPointerUp={onPointerUp}
-              onPointerOut={onPointerUp}
-              onPointerMove={onPointerMove}
-              style={{ cursor: 'grab' }}
+              onPointerDown={(e) => {
+                pointerInteracting.current = e.clientX - pointerInteractionMovement.current
+                canvasRef.current.style.cursor = 'grabbing'
+              }}
+              onPointerUp={() => {
+                pointerInteracting.current = null
+                canvasRef.current.style.cursor = 'grab'
+              }}
+              onPointerOut={() => {
+                pointerInteracting.current = null
+                canvasRef.current.style.cursor = 'grab'
+              }}
+              onPointerMove={(e) => {
+                if (pointerInteracting.current !== null) {
+                  const delta = e.clientX - pointerInteracting.current
+                  pointerInteractionMovement.current = delta / 200
+                }
+              }}
+              className="globe-canvas"
             />
           </motion.div>
         </div>
@@ -178,16 +178,16 @@ export default function GlobeSection() {
           top: 50%;
           right: 10%;
           transform: translateY(-50%);
-          width: 600px;
-          height: 600px;
-          background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 60%);
+          width: 700px;
+          height: 700px;
+          background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 60%);
           pointer-events: none;
         }
 
         .globe-section__content {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 60px;
+          grid-template-columns: 1fr 1.3fr;
+          gap: 20px;
           align-items: center;
         }
 
@@ -214,26 +214,28 @@ export default function GlobeSection() {
           width: 8px;
           height: 8px;
           border-radius: 50%;
-          background: var(--blue-500);
-          box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+          background: var(--blue-400);
+          box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
         }
 
         .globe-section__canvas-wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           position: relative;
-          width: 100%;
-          max-width: 500px;
-          aspect-ratio: 1;
-          margin: 0 auto;
         }
 
-        .globe-section__canvas-wrapper canvas {
-          display: block;
+        .globe-canvas {
+          width: 600px;
+          height: 600px;
+          cursor: grab;
+          max-width: 100%;
         }
 
         @media (max-width: 768px) {
           .globe-section__content {
             grid-template-columns: 1fr;
-            gap: 40px;
+            gap: 20px;
             text-align: center;
           }
 
@@ -247,8 +249,9 @@ export default function GlobeSection() {
             justify-items: start;
           }
 
-          .globe-section__canvas-wrapper {
-            max-width: 320px;
+          .globe-canvas {
+            width: 320px;
+            height: 320px;
           }
         }
       `}</style>

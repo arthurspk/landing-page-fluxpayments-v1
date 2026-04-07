@@ -4,32 +4,32 @@ import { ChevronDown } from 'lucide-react'
 
 const faqs = [
   {
-    question: 'O que e a Flux Payments e para quem ela serve?',
-    answer: 'A Flux Payments e um gateway internacional de pagamentos que permite que empresas e empreendedores aceitem pagamentos de clientes em mais de 180 paises. Ideal para e-commerces, SaaS, marketplaces e qualquer negocio que queira vender globalmente.',
+    question: 'O que é a Flux Payments e para quem ela serve?',
+    answer: 'A Flux Payments é um gateway internacional de pagamentos que permite que empresas e empreendedores aceitem pagamentos de clientes em mais de 180 países. Ideal para e-commerces, SaaS, marketplaces e qualquer negócio que queira vender globalmente.',
   },
   {
-    question: 'Quais formas de pagamento sao aceitas?',
-    answer: 'Aceitamos cartoes de credito internacionais (Visa, Mastercard, Amex), Pix, boleto bancario, e-wallets, transferencias bancarias e pagamentos recorrentes. Suportamos mais de 35 moedas diferentes.',
+    question: 'Quais formas de pagamento são aceitas?',
+    answer: 'Aceitamos cartões de crédito internacionais (Visa, Mastercard, Amex), Pix, boleto bancário, e-wallets, transferências bancárias e pagamentos recorrentes. Suportamos mais de 35 moedas diferentes.',
   },
   {
-    question: 'Preciso ter um CNPJ ou e necessario CNPJ?',
-    answer: 'Sim, para operar como empresa e receber pagamentos, e necessario possuir um CNPJ ativo. Aceitamos desde MEI ate grandes corporacoes.',
+    question: 'Preciso ter um CNPJ ou é necessário CNPJ?',
+    answer: 'Sim, para operar como empresa e receber pagamentos, é necessário possuir um CNPJ ativo. Aceitamos desde MEI até grandes corporações.',
   },
   {
-    question: 'Qual o prazo de liquidacao dos valores?',
-    answer: 'O prazo padrao de liquidacao e de D+1 para Pix e D+2 para cartoes de credito. Oferecemos tambem opcoes de antecipacao com taxas competitivas.',
+    question: 'Qual o prazo de liquidação dos valores?',
+    answer: 'O prazo padrão de liquidação é de D+1 para Pix e D+2 para cartões de crédito. Oferecemos também opções de antecipação com taxas competitivas.',
   },
   {
-    question: 'A Flux Payments e segura?',
-    answer: 'Sim! Possuimos certificacao PCI-DSS Level 1, criptografia de ponta a ponta, sistema anti-fraude com inteligencia artificial e monitoramento 24/7. Seus dados e os dados dos seus clientes estao sempre protegidos.',
+    question: 'A Flux Payments é segura?',
+    answer: 'Sim! Possuímos certificação PCI-DSS Level 1, criptografia de ponta a ponta, sistema anti-fraude com inteligência artificial e monitoramento 24/7. Seus dados e os dados dos seus clientes estão sempre protegidos.',
   },
   {
-    question: 'Como funciona a integracao via API?',
-    answer: 'Nossa API RESTful e simples e bem documentada. Oferecemos SDKs para as principais linguagens (Python, Node.js, PHP, Ruby) e plugins para plataformas como Shopify, WooCommerce e Magento. A integracao pode ser feita em minutos.',
+    question: 'Como funciona a integração via API?',
+    answer: 'Nossa API RESTful é simples e bem documentada. Oferecemos SDKs para as principais linguagens (Python, Node.js, PHP, Ruby) e plugins para plataformas como Shopify, WooCommerce e Magento. A integração pode ser feita em minutos.',
   },
   {
     question: 'Quanto tempo demora para minha conta ser verificada?',
-    answer: 'O processo de verificacao e rapido. Apos enviar a documentacao necessaria, sua conta e analisada em ate 24 horas uteis. Em muitos casos, a aprovacao acontece em poucas horas.',
+    answer: 'O processo de verificação é rápido. Após enviar a documentação necessária, sua conta é analisada em até 24 horas úteis. Em muitos casos, a aprovação acontece em poucas horas.',
   },
 ]
 
@@ -73,14 +73,14 @@ export default function FAQ() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <div className="section-badge">Duvidas Frequentes</div>
+            <div className="section-badge">Dúvidas Frequentes</div>
             <h2 className="section-title">
-              Tem duvidas?
+              Tem dúvidas?
               <br />
-              <span className="gradient-text">Nos temos as respostas.</span>
+              <span className="gradient-text">Nós temos as respostas.</span>
             </h2>
             <p className="section-subtitle">
-              Respondemos as perguntas mais frequentes sobre nossos servicos.
+              Respondemos as perguntas mais frequentes sobre nossos serviços.
               Caso precise de mais ajuda, entre em contato.
             </p>
           </motion.div>

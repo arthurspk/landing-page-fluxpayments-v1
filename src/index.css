@@ -27,14 +27,14 @@
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
 
-  --border-color: rgba(59, 130, 246, 0.15);
-  --border-hover: rgba(59, 130, 246, 0.3);
+  --border-color: rgba(59, 130, 246, 0.2);
+  --border-hover: rgba(59, 130, 246, 0.45);
 
-  --gradient-blue: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
-  --gradient-hero: radial-gradient(ellipse at 50% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 60%);
-  --gradient-glow: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.2) 0%, transparent 50%);
+  --gradient-blue: linear-gradient(135deg, #1d4ed8 0%, #2563eb 40%, #3b82f6 70%, #60a5fa 100%);
+  --gradient-hero: radial-gradient(ellipse at 50% 0%, rgba(37, 99, 235, 0.25) 0%, transparent 60%);
+  --gradient-glow: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.3) 0%, transparent 50%);
 
-  --shadow-blue: 0 0 60px rgba(59, 130, 246, 0.15);
+  --shadow-blue: 0 0 80px rgba(37, 99, 235, 0.25);
   --shadow-card: 0 4px 30px rgba(0, 0, 0, 0.3);
 
   --font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -99,8 +99,8 @@ button {
   padding: 6px 16px;
   border-radius: 100px;
   border: 1px solid var(--border-color);
-  background: rgba(59, 130, 246, 0.08);
-  color: var(--blue-400);
+  background: rgba(37, 99, 235, 0.12);
+  color: var(--blue-300);
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.5px;
@@ -131,7 +131,7 @@ button {
 }
 
 .section-title .gradient-text {
-  background: var(--gradient-blue);
+  background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 30%, #3b82f6 60%, #2563eb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -156,12 +156,12 @@ button {
   border-radius: 12px;
   border: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 25px rgba(37, 99, 235, 0.4);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 8px 35px rgba(37, 99, 235, 0.55);
 }
 
 .btn-secondary {

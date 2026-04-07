@@ -1,5 +1,48 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, Play, Shield, Zap, Globe } from 'lucide-react'
+
+const typewriterWords = [
+  'CRESÇA SEM LIMITES',
+  'VENDA PARA O MUNDO',
+  'ESCALE SEU NEGÓCIO',
+  'RECEBA DE QUALQUER LUGAR',
+]
+
+function Typewriter() {
+  const [wordIndex, setWordIndex] = useState(0)
+  const [text, setText] = useState('')
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  useEffect(() => {
+    const currentWord = typewriterWords[wordIndex]
+    let timeout
+
+    if (!isDeleting) {
+      if (text.length < currentWord.length) {
+        timeout = setTimeout(() => setText(currentWord.slice(0, text.length + 1)), 80)
+      } else {
+        timeout = setTimeout(() => setIsDeleting(true), 2000)
+      }
+    } else {
+      if (text.length > 0) {
+        timeout = setTimeout(() => setText(text.slice(0, -1)), 40)
+      } else {
+        setIsDeleting(false)
+        setWordIndex((prev) => (prev + 1) % typewriterWords.length)
+      }
+    }
+
+    return () => clearTimeout(timeout)
+  }, [text, isDeleting, wordIndex])
+
+  return (
+    <span className="hero__title-gradient">
+      {text}
+      <span className="hero__cursor">|</span>
+    </span>
+  )
+}
 
 export default function Hero() {
   return (
@@ -29,7 +72,7 @@ export default function Hero() {
         >
           RECEBA GLOBAL,
           <br />
-          <span className="hero__title-gradient">CRESÇA SEM LIMITES</span>
+          <Typewriter />
         </motion.h1>
 
         <motion.p
@@ -38,9 +81,8 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          A plataforma de pagamentos internacionais que conecta seu negocio ao mundo.
-          <br />
-          Aceite pagamentos de qualquer lugar com seguranca, rapidez e as melhores taxas.
+          A plataforma de pagamentos internacionais que conecta seu negócio ao mundo.
+          Aceite pagamentos de qualquer lugar com segurança, rapidez e as melhores taxas.
         </motion.p>
 
         <motion.div
@@ -53,7 +95,7 @@ export default function Hero() {
             Entrar em Contato <ArrowRight size={18} />
           </a>
           <a href="#features" className="btn-secondary">
-            <Play size={16} /> Comecar Agora
+            <Play size={16} /> Começar Agora
           </a>
         </motion.div>
 
@@ -69,11 +111,11 @@ export default function Hero() {
           </div>
           <div className="hero__badge-item">
             <Zap size={16} />
-            <span>Saque Rapido</span>
+            <span>Saque Rápido</span>
           </div>
           <div className="hero__badge-item">
             <Globe size={16} />
-            <span>+180 Paises</span>
+            <span>+180 Países</span>
           </div>
         </motion.div>
       </div>
@@ -97,22 +139,22 @@ export default function Hero() {
 
         .hero__gradient-1 {
           position: absolute;
-          top: -30%;
+          top: -20%;
           left: 50%;
           transform: translateX(-50%);
-          width: 800px;
-          height: 600px;
-          background: radial-gradient(ellipse, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+          width: 900px;
+          height: 700px;
+          background: radial-gradient(ellipse, rgba(37, 99, 235, 0.3) 0%, rgba(29, 78, 216, 0.15) 40%, transparent 70%);
           filter: blur(40px);
         }
 
         .hero__gradient-2 {
           position: absolute;
-          top: 20%;
+          top: 15%;
           left: -10%;
-          width: 500px;
-          height: 500px;
-          background: radial-gradient(circle, rgba(30, 64, 175, 0.12) 0%, transparent 70%);
+          width: 600px;
+          height: 600px;
+          background: radial-gradient(circle, rgba(30, 64, 175, 0.25) 0%, transparent 65%);
           filter: blur(60px);
           animation: float 8s ease-in-out infinite;
         }
@@ -121,9 +163,9 @@ export default function Hero() {
           position: absolute;
           bottom: -10%;
           right: -5%;
-          width: 600px;
-          height: 400px;
-          background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+          width: 700px;
+          height: 500px;
+          background: radial-gradient(circle, rgba(37, 99, 235, 0.2) 0%, transparent 65%);
           filter: blur(50px);
           animation: float 10s ease-in-out infinite reverse;
         }
@@ -165,13 +207,26 @@ export default function Hero() {
           letter-spacing: -2px;
           margin-bottom: 24px;
           color: var(--text-primary);
+          min-height: 2.2em;
         }
 
         .hero__title-gradient {
-          background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 40%, #2563eb 70%, #1d4ed8 100%);
+          background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 30%, #3b82f6 60%, #2563eb 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
+        }
+
+        .hero__cursor {
+          -webkit-text-fill-color: var(--blue-400);
+          animation: blink 0.8s step-end infinite;
+          font-weight: 300;
+          margin-left: 2px;
+        }
+
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
         }
 
         .hero__subtitle {
@@ -223,6 +278,7 @@ export default function Hero() {
 
           .hero__title {
             letter-spacing: -1px;
+            min-height: 3em;
           }
 
           .hero__badges {
