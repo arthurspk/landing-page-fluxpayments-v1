@@ -44,6 +44,24 @@ export default function Stats() {
   return (
     <section className="stats">
       <div className="container">
+        <div className="stats__header">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="section-badge">Nossos Números</div>
+            <h2 className="section-title">
+              Números que comprovam
+              <br />
+              <span className="gradient-text">nossa excelência</span>
+            </h2>
+            <p className="section-subtitle">
+              A confiança de milhares de empresas ao redor do mundo reflete nosso compromisso com segurança, velocidade e inovação.
+            </p>
+          </motion.div>
+        </div>
+
         <div className="stats__grid">
           {stats.map((stat, i) => (
             <motion.div
@@ -68,8 +86,20 @@ export default function Stats() {
 
       <style>{`
         .stats {
-          padding: 80px 0;
+          padding: 100px 0;
           position: relative;
+        }
+
+        .stats__header {
+          text-align: center;
+          margin-bottom: 48px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .stats__header .section-subtitle {
+          margin: 0 auto;
         }
 
         .stats::before {

@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import Loading from './components/Loading'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Stats from './components/Stats'
@@ -12,19 +14,26 @@ import FloatButton from './components/FloatButton'
 import './App.css'
 
 function App() {
+  const [loaded, setLoaded] = useState(false)
+
   return (
     <>
-      <Navbar />
-      <Hero />
-      <Stats />
-      <Features />
-      <Solutions />
-      <Globe />
-      <Testimonials />
-      <FAQ />
-      <CTA />
-      <Footer />
-      <FloatButton />
+      <Loading onFinish={() => setLoaded(true)} />
+      {loaded && (
+        <>
+          <Navbar />
+          <Hero />
+          <Stats />
+          <Features />
+          <Solutions />
+          <Globe />
+          <Testimonials />
+          <FAQ />
+          <CTA />
+          <Footer />
+          <FloatButton />
+        </>
+      )}
     </>
   )
 }
