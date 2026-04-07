@@ -28,8 +28,10 @@ function Typewriter() {
       if (text.length > 0) {
         timeout = setTimeout(() => setText(text.slice(0, -1)), 40)
       } else {
-        setIsDeleting(false)
-        setWordIndex((prev) => (prev + 1) % typewriterWords.length)
+        timeout = setTimeout(() => {
+          setIsDeleting(false)
+          setWordIndex((prev) => (prev + 1) % typewriterWords.length)
+        }, 0)
       }
     }
 

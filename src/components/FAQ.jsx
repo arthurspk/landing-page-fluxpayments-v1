@@ -33,9 +33,15 @@ const faqs = [
   },
 ]
 
-function FAQItem({ faq, isOpen, onToggle }) {
+function FAQItem({ faq, isOpen, onToggle, index }) {
   return (
-    <div className={`faq__item ${isOpen ? 'faq__item--open' : ''}`}>
+    <motion.div
+      className={`faq__item ${isOpen ? 'faq__item--open' : ''}`}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.07 }}
+    >
       <button className="faq__question" onClick={onToggle}>
         <span>{faq.question}</span>
         <ChevronDown
@@ -56,7 +62,7 @@ function FAQItem({ faq, isOpen, onToggle }) {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   )
 }
 
@@ -85,22 +91,17 @@ export default function FAQ() {
             </p>
           </motion.div>
 
-          <motion.div
-            className="faq__list"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
+          <div className="faq__list">
             {faqs.map((faq, i) => (
               <FAQItem
                 key={i}
                 faq={faq}
+                index={i}
                 isOpen={openIndex === i}
                 onToggle={() => setOpenIndex(openIndex === i ? -1 : i)}
               />
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
 

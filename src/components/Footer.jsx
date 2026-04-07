@@ -1,50 +1,94 @@
-import { Globe, Link2, Send, MessageSquare } from 'lucide-react'
-import logoPrincipal from '../assets/logos/logo-principal.png'
+import { motion } from "framer-motion";
+import { Globe, Link2, MessageSquare, Send } from "lucide-react";
+import logoPrincipal from "../assets/logos/logo-principal.png";
 
 const footerLinks = {
-  Produto: ['Checkout', 'Pagamentos', 'Recorrência', 'Split', 'Link de Pagamento'],
-  Empresa: ['Sobre nós', 'Carreiras', 'Blog', 'Contato'],
-  Suporte: ['Central de Ajuda', 'Documentação', 'Status da API', 'Comunidade'],
-  Legal: ['Termos de Uso', 'Privacidade', 'Compliance', 'PCI-DSS'],
-}
+  Produto: [
+    "Checkout",
+    "Pagamentos",
+    "Recorrência",
+    "Split",
+    "Link de Pagamento",
+  ],
+  Empresa: ["Sobre nós", "Carreiras", "Blog", "Contato"],
+  Suporte: ["Central de Ajuda", "Documentação", "Status da API", "Comunidade"],
+  Legal: ["Termos de Uso", "Privacidade", "Compliance", "PCI-DSS"],
+};
 
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer__top">
-          <div className="footer__brand">
+          <motion.div
+            className="footer__brand"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <a href="#hero" className="footer__logo">
-              <img src={logoPrincipal} alt="Flux Payments" className="footer__logo-img" />
+              <img
+                src={logoPrincipal}
+                alt="Flux Payments"
+                className="footer__logo-img"
+              />
             </a>
             <p className="footer__description">
-              A plataforma internacional de pagamentos para transformar seu negócio em uma operação global, segura e escalável.
+              A plataforma internacional de pagamentos para transformar seu
+              negócio em uma operação global, segura e escalável.
             </p>
             <div className="footer__social">
-              <a href="#" aria-label="Instagram"><Globe size={18} /></a>
-              <a href="#" aria-label="LinkedIn"><Link2 size={18} /></a>
-              <a href="#" aria-label="Twitter"><Send size={18} /></a>
-              <a href="#" aria-label="Contato"><MessageSquare size={18} /></a>
+              <a href="#" aria-label="Instagram">
+                <Globe size={18} />
+              </a>
+              <a href="#" aria-label="LinkedIn">
+                <Link2 size={18} />
+              </a>
+              <a href="#" aria-label="Twitter">
+                <Send size={18} />
+              </a>
+              <a href="#" aria-label="Contato">
+                <MessageSquare size={18} />
+              </a>
             </div>
-          </div>
+          </motion.div>
 
           <div className="footer__links">
-            {Object.entries(footerLinks).map(([title, links]) => (
-              <div key={title} className="footer__column">
+            {Object.entries(footerLinks).map(([title, links], i) => (
+              <motion.div
+                key={title}
+                className="footer__column"
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
+              >
                 <h4>{title}</h4>
                 <ul>
-                  {links.map(link => (
-                    <li key={link}><a href="#">{link}</a></li>
+                  {links.map((link) => (
+                    <li key={link}>
+                      <a href="#">{link}</a>
+                    </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
-        <div className="footer__bottom">
+        <motion.div
+          className="footer__bottom"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
           <div className="footer__copyright">
-            <p>&copy; {new Date().getFullYear()} Flux Payments. Todos os direitos reservados.</p>
+            <p>
+              &copy; {new Date().getFullYear()} Flux Payments - Todos os
+              direitos reservados.
+            </p>
             <p className="footer__cnpj">CNPJ: 64.776.265/0001-69</p>
           </div>
           <div className="footer__bottom-links">
@@ -52,7 +96,7 @@ export default function Footer() {
             <a href="#">Privacidade</a>
             <a href="#">Cookies</a>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <style>{`
@@ -217,5 +261,5 @@ export default function Footer() {
         }
       `}</style>
     </footer>
-  )
+  );
 }

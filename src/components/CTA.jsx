@@ -15,22 +15,56 @@ export default function CTA() {
           transition={{ duration: 0.7 }}
         >
           <div className="cta__content">
-            <div className="section-badge">Comece Hoje Mesmo</div>
-            <h2 className="section-title">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+            >
+              <div className="section-badge">Comece Hoje Mesmo</div>
+            </motion.div>
+            <motion.h2
+              className="section-title"
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+            >
               Pronto para começar
               <br />
               <span className="gradient-text">sua jornada global?</span>
-            </h2>
-            <p className="section-subtitle">
+            </motion.h2>
+            <motion.p
+              className="section-subtitle"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.35 }}
+            >
               Junte-se a mais de <strong>50.000 empresas</strong> que já estão
               faturando alto com a Flux Payments.
-            </p>
+            </motion.p>
 
-            <a href="https://wa.me/16475755252" target="_blank" rel="noopener noreferrer" className="btn-primary cta__btn">
+            <motion.a
+              href="https://wa.me/16475755252"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary cta__btn"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.45 }}
+            >
               Falar com Especialista <ArrowRight size={18} />
-            </a>
+            </motion.a>
 
-            <div className="cta__features">
+            <motion.div
+              className="cta__features"
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.55 }}
+            >
               <div className="cta__feature">
                 <CheckCircle2 size={16} />
                 <span>Sem taxas de setup</span>
@@ -43,7 +77,7 @@ export default function CTA() {
                 <Headphones size={16} />
                 <span>Suporte 24/7</span>
               </div>
-            </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>
