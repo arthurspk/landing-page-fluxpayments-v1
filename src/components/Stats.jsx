@@ -142,13 +142,27 @@ export default function Stats() {
         }
 
         @media (max-width: 768px) {
+          .stats {
+            padding: 60px 0;
+          }
+
           .stats__grid {
             grid-template-columns: repeat(2, 1fr);
             gap: 16px;
           }
 
+          .stats__card {
+            padding: 24px 16px;
+          }
+
           .stats__value {
             font-size: 28px;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .stats__grid {
+            grid-template-columns: 1fr;
           }
         }
       `}</style>

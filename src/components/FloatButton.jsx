@@ -5,6 +5,13 @@ import { motion, AnimatePresence } from 'framer-motion'
 export default function FloatButton() {
   const [showChat, setShowChat] = useState(false)
   const [showScrollTop, setShowScrollTop] = useState(false)
+  const [message, setMessage] = useState('')
+
+  const sendToWhatsApp = () => {
+    const text = encodeURIComponent(message || 'Olá, quero saber mais sobre a Flux Payments!')
+    window.open(`https://wa.me/16475755252?text=${text}`, '_blank')
+    setMessage('')
+  }
 
   useEffect(() => {
     const onScroll = () => setShowScrollTop(window.scrollY > 600)
@@ -73,8 +80,14 @@ export default function FloatButton() {
               </div>
             </div>
             <div className="float-chat__footer">
-              <input type="text" placeholder="Digite sua mensagem..." />
-              <button className="float-chat__send">Enviar</button>
+              <input
+                type="text"
+                placeholder="Digite sua mensagem..."
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && sendToWhatsApp()}
+              />
+              <button className="float-chat__send" onClick={sendToWhatsApp}>Enviar</button>
             </div>
           </motion.div>
         )}
@@ -133,6 +146,29 @@ export default function FloatButton() {
           backdrop-filter: blur(20px);
           overflow: hidden;
           box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 768px) {
+          .float-stack {
+            bottom: 16px;
+            right: 16px;
+          }
+
+          .float-chat {
+            bottom: 88px;
+            right: 16px;
+            max-width: calc(100vw - 32px);
+          }
+
+          .float-btn {
+            width: 50px;
+            height: 50px;
+          }
+
+          .float-scroll-top {
+            width: 40px;
+            height: 40px;
+          }
         }
 
         .float-chat__header {

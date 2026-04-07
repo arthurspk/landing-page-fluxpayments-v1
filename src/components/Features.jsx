@@ -173,9 +173,21 @@ export default function Features() {
         }
 
         @media (max-width: 768px) {
+          .features {
+            padding: 60px 0;
+          }
+
+          .features__header {
+            margin-bottom: 40px;
+          }
+
           .features__grid {
             grid-template-columns: 1fr;
             gap: 16px;
+          }
+
+          .features__card {
+            padding: 24px;
           }
         }
 

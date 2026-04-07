@@ -36,7 +36,7 @@ export default function Navbar() {
         </ul>
 
         <div className="navbar__actions">
-          <a href="#cta" className="btn-primary navbar__cta">Entrar em Contato</a>
+          <a href="https://wa.me/16475755252" target="_blank" rel="noopener noreferrer" className="btn-primary navbar__cta">Entrar em Contato</a>
           <button
             className="navbar__toggle"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -129,14 +129,18 @@ export default function Navbar() {
             left: 0;
             right: 0;
             bottom: 0;
+            width: 100%;
             background: rgba(3, 7, 18, 0.98);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             flex-direction: column;
             justify-content: center;
             gap: 8px;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
+            z-index: 999;
+            overflow: hidden;
           }
 
           .navbar__links--open {
@@ -147,10 +151,13 @@ export default function Navbar() {
           .navbar__links a {
             font-size: 20px;
             padding: 16px 32px;
+            width: 100%;
+            text-align: center;
           }
 
           .navbar__toggle {
             display: flex;
+            z-index: 1000;
           }
 
           .navbar__cta {

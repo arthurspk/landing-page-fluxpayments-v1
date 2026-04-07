@@ -91,7 +91,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <a href="#cta" className="btn-primary">
+          <a href="https://wa.me/16475755252" target="_blank" rel="noopener noreferrer" className="btn-primary">
             Entrar em Contato <ArrowRight size={18} />
           </a>
           <a href="#features" className="btn-secondary">
@@ -279,10 +279,35 @@ export default function Hero() {
           .hero__title {
             letter-spacing: -1px;
             min-height: 3em;
+            word-break: break-word;
+          }
+
+          .hero__buttons {
+            flex-direction: column;
+            align-items: stretch;
+            width: 100%;
+            max-width: 320px;
+          }
+
+          .hero__buttons .btn-primary,
+          .hero__buttons .btn-secondary {
+            justify-content: center;
           }
 
           .hero__badges {
-            gap: 12px;
+            gap: 10px;
+          }
+
+          .hero__badge-item {
+            padding: 8px 14px;
+            font-size: 12px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .hero__badges {
+            flex-direction: column;
+            align-items: center;
           }
         }
       `}</style>

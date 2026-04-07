@@ -26,7 +26,7 @@ export default function CTA() {
               faturando alto com a Flux Payments.
             </p>
 
-            <a href="#" className="btn-primary cta__btn">
+            <a href="https://wa.me/16475755252" target="_blank" rel="noopener noreferrer" className="btn-primary cta__btn">
               Falar com Especialista <ArrowRight size={18} />
             </a>
 
@@ -139,12 +139,24 @@ export default function CTA() {
         }
 
         @media (max-width: 768px) {
+          .cta {
+            padding: 60px 0;
+          }
+
           .cta__card {
-            padding: 48px 24px;
+            padding: 48px 20px;
+          }
+
+          .cta__btn {
+            width: 100%;
+            max-width: 320px;
+            justify-content: center;
           }
 
           .cta__features {
-            gap: 20px;
+            gap: 16px;
+            flex-direction: column;
+            align-items: center;
           }
         }
       `}</style>

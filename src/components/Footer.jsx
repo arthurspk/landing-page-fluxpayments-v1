@@ -181,18 +181,38 @@ export default function Footer() {
         }
 
         @media (max-width: 768px) {
+          .footer {
+            padding: 60px 0 0;
+          }
+
           .footer__top {
             grid-template-columns: 1fr;
             gap: 40px;
+            padding-bottom: 40px;
           }
 
           .footer__links {
             grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+          }
+
+          .footer__description {
+            max-width: 100%;
           }
 
           .footer__bottom {
             flex-direction: column;
             text-align: center;
+          }
+
+          .footer__bottom-links {
+            gap: 16px;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .footer__links {
+            grid-template-columns: 1fr;
           }
         }
       `}</style>

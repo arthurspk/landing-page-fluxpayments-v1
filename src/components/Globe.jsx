@@ -2,27 +2,6 @@ import { useEffect, useRef } from 'react'
 import createGlobe from 'cobe'
 import { motion } from 'framer-motion'
 
-const arcs = [
-  { from: [-23.5505, -46.6333], to: [-22.9068, -43.1729] },
-  { from: [28.6139, 77.209], to: [1.3521, 103.8198] },
-  { from: [-23.5505, -46.6333], to: [40.7128, -74.006] },
-  { from: [51.5074, -0.1278], to: [35.6762, 139.6503] },
-  { from: [-15.7801, -47.9292], to: [48.8566, 2.3522] },
-  { from: [37.7749, -122.4194], to: [22.3193, 114.1694] },
-  { from: [-33.8688, 151.2093], to: [1.3521, 103.8198] },
-  { from: [40.7128, -74.006], to: [51.5074, -0.1278] },
-  { from: [52.52, 13.405], to: [-22.9068, -43.1729] },
-  { from: [-34.6037, -58.3816], to: [19.4326, -99.1332] },
-  { from: [31.2304, 121.4737], to: [55.7558, 37.6173] },
-  { from: [34.0522, -118.2437], to: [48.8566, 2.3522] },
-  { from: [-6.2088, 106.8456], to: [51.5074, -0.1278] },
-  { from: [22.3193, 114.1694], to: [-33.8688, 151.2093] },
-  { from: [37.5665, 126.978], to: [35.6762, 139.6503] },
-  { from: [41.9028, 12.4964], to: [34.0522, -118.2437] },
-  { from: [49.2827, -123.1207], to: [52.3676, 4.9041] },
-  { from: [-15.7801, -47.9292], to: [28.6139, 77.209] },
-]
-
 export default function GlobeSection() {
   const canvasRef = useRef(null)
   const pointerInteracting = useRef(null)
@@ -33,20 +12,24 @@ export default function GlobeSection() {
     const canvas = canvasRef.current
     if (!canvas) return
 
+    const isMobile = window.innerWidth <= 768
+    const globeSize = isMobile ? 600 : 1400
+    const globeOffset = [0, 0]
+
     const globeInstance = createGlobe(canvas, {
       devicePixelRatio: 2,
-      width: 1000,
-      height: 1000,
+      width: globeSize,
+      height: globeSize,
       phi: 0,
       theta: 0.2,
       dark: 1,
       diffuse: 1.2,
       mapSamples: 20000,
       mapBrightness: 6,
-      mapBaseBrightness: 0.02,
-      baseColor: [0.024, 0.08, 0.34],
+      mapBaseBrightness: 0.05,
+      baseColor: [0.02, 0.05, 0.2],
       markerColor: [0.3, 0.55, 1.0],
-      glowColor: [0.04, 0.08, 0.28],
+      glowColor: [0.04, 0.1, 0.3],
       markers: [
         { location: [37.7749, -122.4194], size: 0.04 },
         { location: [40.7128, -74.006], size: 0.04 },
@@ -67,8 +50,25 @@ export default function GlobeSection() {
         { location: [22.3193, 114.1694], size: 0.03 },
         { location: [34.0522, -118.2437], size: 0.03 },
       ],
-      arcs,
-      arcColor: [0.15, 0.45, 0.95],
+      arcs: [
+        { from: [-23.5505, -46.6333], to: [40.7128, -74.006] },
+        { from: [-15.7801, -47.9292], to: [48.8566, 2.3522] },
+        { from: [51.5074, -0.1278], to: [35.6762, 139.6503] },
+        { from: [37.7749, -122.4194], to: [22.3193, 114.1694] },
+        { from: [40.7128, -74.006], to: [51.5074, -0.1278] },
+        { from: [-33.8688, 151.2093], to: [1.3521, 103.8198] },
+        { from: [28.6139, 77.209], to: [1.3521, 103.8198] },
+        { from: [52.52, 13.405], to: [-22.9068, -43.1729] },
+        { from: [-34.6037, -58.3816], to: [19.4326, -99.1332] },
+        { from: [31.2304, 121.4737], to: [55.7558, 37.6173] },
+        { from: [34.0522, -118.2437], to: [48.8566, 2.3522] },
+        { from: [-23.5505, -46.6333], to: [28.6139, 77.209] },
+        { from: [22.3193, 114.1694], to: [-33.8688, 151.2093] },
+        { from: [37.5665, 126.978], to: [35.6762, 139.6503] },
+        { from: [41.9028, 12.4964], to: [34.0522, -118.2437] },
+      ],
+      arcColor: [0.2, 0.5, 1.0],
+      offset: globeOffset,
     })
 
     let animationId
@@ -168,31 +168,36 @@ export default function GlobeSection() {
 
       <style>{`
         .globe-section {
-          padding: 100px 0;
+          padding: 80px 0;
           position: relative;
           overflow: hidden;
         }
 
         .globe-section__glow {
-          position: absolute;
-          top: 50%;
-          right: 10%;
-          transform: translateY(-50%);
-          width: 700px;
-          height: 700px;
-          background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 60%);
-          pointer-events: none;
+          display: none;
         }
 
         .globe-section__content {
-          display: grid;
-          grid-template-columns: 1fr 1.3fr;
-          gap: 20px;
+          display: flex;
           align-items: center;
+          gap: 0;
+          min-height: 600px;
+        }
+
+        .globe-section__text {
+          flex: 0 0 42%;
+          position: relative;
+          z-index: 2;
+        }
+
+        .globe-section__text .section-title {
+          font-size: clamp(32px, 3.5vw, 48px);
         }
 
         .globe-section__text .section-subtitle {
           margin-bottom: 32px;
+          font-size: 15px;
+          max-width: 480px;
         }
 
         .globe-section__highlights {
@@ -208,50 +213,91 @@ export default function GlobeSection() {
           font-size: 14px;
           color: var(--text-secondary);
           font-weight: 500;
+          white-space: nowrap;
         }
 
         .globe-section__highlight-dot {
-          width: 8px;
-          height: 8px;
+          width: 10px;
+          height: 10px;
+          min-width: 10px;
           border-radius: 50%;
           background: var(--blue-400);
           box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+          animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .globe-section__highlight:nth-child(2) .globe-section__highlight-dot {
+          animation-delay: 0.5s;
+        }
+        .globe-section__highlight:nth-child(3) .globe-section__highlight-dot {
+          animation-delay: 1s;
+        }
+        .globe-section__highlight:nth-child(4) .globe-section__highlight-dot {
+          animation-delay: 1.5s;
+        }
+
+        @keyframes pulse-glow {
+          0%, 100% {
+            opacity: 1;
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.4;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.9);
+            transform: scale(1.3);
+          }
         }
 
         .globe-section__canvas-wrapper {
+          flex: 1;
           display: flex;
           align-items: center;
-          justify-content: center;
-          position: relative;
+          justify-content: flex-end;
         }
 
         .globe-canvas {
-          width: 600px;
-          height: 600px;
+          width: 720px;
+          height: 720px;
           cursor: grab;
-          max-width: 100%;
+          margin-right: -40px;
         }
 
         @media (max-width: 768px) {
+          .globe-section {
+            padding: 60px 0;
+          }
+
           .globe-section__content {
-            grid-template-columns: 1fr;
+            flex-direction: column;
             gap: 20px;
-            text-align: center;
           }
 
           .globe-section__text {
+            flex: none;
+            width: 100%;
+            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
+          }
+
+          .globe-section__highlight {
+            white-space: normal;
           }
 
           .globe-section__highlights {
             justify-items: start;
           }
 
+          .globe-section__canvas-wrapper {
+            width: 100%;
+            justify-content: center;
+          }
+
           .globe-canvas {
-            width: 320px;
-            height: 320px;
+            width: min(300px, 90vw);
+            height: min(300px, 90vw);
           }
         }
       `}</style>

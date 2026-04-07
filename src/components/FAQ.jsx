@@ -174,6 +174,10 @@ export default function FAQ() {
         }
 
         @media (max-width: 768px) {
+          .faq {
+            padding: 60px 0;
+          }
+
           .faq__layout {
             grid-template-columns: 1fr;
             gap: 40px;
@@ -184,6 +188,11 @@ export default function FAQ() {
             display: flex;
             flex-direction: column;
             align-items: center;
+          }
+
+          .faq__question {
+            padding: 16px 20px;
+            font-size: 14px;
           }
         }
       `}</style>

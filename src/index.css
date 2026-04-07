@@ -46,6 +46,7 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 body {
@@ -64,6 +65,7 @@ body {
   min-height: auto;
   display: block;
   text-align: left;
+  overflow-x: hidden;
 }
 
 a {
@@ -90,6 +92,13 @@ button {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 24px;
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
 }
 
 .section-badge {
@@ -181,6 +190,18 @@ button {
 .btn-secondary:hover {
   border-color: var(--blue-500);
   background: rgba(59, 130, 246, 0.08);
+}
+
+@media (max-width: 480px) {
+  .btn-primary,
+  .btn-secondary {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+
+  .section-subtitle {
+    font-size: 15px;
+  }
 }
 
 /* Scrollbar */

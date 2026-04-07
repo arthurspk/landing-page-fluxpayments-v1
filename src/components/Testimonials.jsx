@@ -156,8 +156,20 @@ export default function Testimonials() {
         }
 
         @media (max-width: 768px) {
+          .testimonials {
+            padding: 60px 0;
+          }
+
+          .testimonials__header {
+            margin-bottom: 40px;
+          }
+
           .testimonials__grid {
             grid-template-columns: 1fr;
+          }
+
+          .testimonials__card {
+            padding: 24px;
           }
         }
       `}</style>

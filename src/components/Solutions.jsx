@@ -162,8 +162,20 @@ export default function Solutions() {
         }
 
         @media (max-width: 768px) {
+          .solutions {
+            padding: 60px 0;
+          }
+
+          .solutions__header {
+            margin-bottom: 40px;
+          }
+
           .solutions__grid {
             grid-template-columns: 1fr;
+          }
+
+          .solutions__card {
+            padding: 20px;
           }
         }
 
