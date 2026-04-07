@@ -235,22 +235,44 @@ export default function Footer() {
             padding-bottom: 40px;
           }
 
-          .footer__links {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
+          .footer__brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
           }
 
           .footer__description {
             max-width: 100%;
           }
 
+          .footer__social {
+            justify-content: center;
+          }
+
+          .footer__links {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px 24px;
+            text-align: center;
+          }
+
+          .footer__column h4 {
+            margin-bottom: 12px;
+          }
+
+          .footer__column ul {
+            align-items: center;
+          }
+
           .footer__bottom {
             flex-direction: column;
             text-align: center;
+            align-items: center;
           }
 
           .footer__bottom-links {
             gap: 16px;
+            justify-content: center;
           }
         }
 

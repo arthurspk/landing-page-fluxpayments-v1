@@ -256,7 +256,7 @@ export default function GlobeSection() {
 
           .globe-section__content {
             flex-direction: column;
-            gap: 20px;
+            gap: 24px;
           }
 
           .globe-section__text {
@@ -268,12 +268,20 @@ export default function GlobeSection() {
             align-items: center;
           }
 
-          .globe-section__highlight {
-            white-space: normal;
+          .globe-section__text .section-subtitle {
+            max-width: 100%;
           }
 
           .globe-section__highlights {
-            justify-items: start;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px 24px;
+            width: 100%;
+          }
+
+          .globe-section__highlight {
+            white-space: normal;
+            font-size: 14px;
+            justify-content: flex-start;
           }
 
           .globe-section__canvas-wrapper {
@@ -282,8 +290,9 @@ export default function GlobeSection() {
           }
 
           .globe-canvas {
-            width: min(300px, 90vw);
-            height: min(300px, 90vw);
+            width: min(380px, 92vw);
+            height: min(380px, 92vw);
+            margin-right: 0;
           }
         }
       `}</style>
