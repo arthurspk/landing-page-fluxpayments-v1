@@ -25,7 +25,7 @@ export default function FloatButton() {
 
   return (
     <>
-      <div className="float-stack">
+      <div className={`float-stack ${!showChat ? 'float-stack--closed' : ''}`}>
         <AnimatePresence>
           {showScrollTop && (
             <motion.button
@@ -98,11 +98,15 @@ export default function FloatButton() {
           position: fixed;
           bottom: 24px;
           right: 24px;
-          z-index: 999;
+          z-index: 1001;
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
           align-items: center;
-          gap: 12px;
+          gap: 14px;
+        }
+
+        .float-stack--closed {
+          flex-direction: column;
         }
 
         .float-scroll-top {
@@ -135,9 +139,9 @@ export default function FloatButton() {
 
         .float-chat {
           position: fixed;
-          bottom: 100px;
+          bottom: 96px;
           right: 24px;
-          z-index: 998;
+          z-index: 1000;
           width: 360px;
           max-width: calc(100vw - 48px);
           border-radius: 16px;
