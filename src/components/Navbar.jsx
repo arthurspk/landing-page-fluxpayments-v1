@@ -20,6 +20,15 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [mobileOpen])
+
   return (
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="navbar__inner container">
@@ -28,11 +37,23 @@ export default function Navbar() {
         </a>
 
         <ul className={`navbar__links ${mobileOpen ? 'navbar__links--open' : ''}`}>
+          <button
+            className="navbar__close-mobile"
+            onClick={() => setMobileOpen(false)}
+            aria-label="Fechar menu"
+          >
+            <X size={28} />
+          </button>
           {navLinks.map(link => (
             <li key={link.href}>
               <a href={link.href} onClick={() => setMobileOpen(false)}>{link.label}</a>
             </li>
           ))}
+          <li className="navbar__mobile-cta">
+            <a href="https://wa.me/16475755252" target="_blank" rel="noopener noreferrer" className="btn-primary" onClick={() => setMobileOpen(false)}>
+              Entrar em Contato
+            </a>
+          </li>
         </ul>
 
         <div className="navbar__actions">
@@ -122,6 +143,14 @@ export default function Navbar() {
           padding: 8px;
         }
 
+        .navbar__close-mobile {
+          display: none;
+        }
+
+        .navbar__mobile-cta {
+          display: none;
+        }
+
         @media (max-width: 768px) {
           .navbar__links {
             position: fixed;
@@ -130,16 +159,19 @@ export default function Navbar() {
             right: 0;
             bottom: 0;
             width: 100%;
-            background: rgba(3, 7, 18, 0.98);
+            height: 100vh;
+            height: 100dvh;
+            background: rgba(3, 7, 18, 0.99);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             flex-direction: column;
             justify-content: center;
+            align-items: center;
             gap: 8px;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
-            z-index: 999;
+            z-index: 9999;
             overflow: hidden;
           }
 
@@ -148,11 +180,34 @@ export default function Navbar() {
             pointer-events: all;
           }
 
+          .navbar__close-mobile {
+            display: flex;
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 8px;
+            z-index: 10000;
+          }
+
           .navbar__links a {
-            font-size: 20px;
+            font-size: 22px;
             padding: 16px 32px;
             width: 100%;
             text-align: center;
+          }
+
+          .navbar__mobile-cta {
+            display: block;
+            margin-top: 24px;
+          }
+
+          .navbar__mobile-cta .btn-primary {
+            padding: 14px 40px !important;
+            font-size: 15px !important;
           }
 
           .navbar__toggle {
