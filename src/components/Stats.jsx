@@ -1,15 +1,11 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 import { Users, TrendingUp, ShoppingCart, Percent } from 'lucide-react'
+import { useTranslation } from '../i18n/useTranslation'
 
-const stats = [
-  { icon: Users, value: 50000, suffix: '+', label: 'Clientes Ativos', prefix: '' },
-  { icon: TrendingUp, value: 10, suffix: 'M+', label: 'Transações Mensais', prefix: '' },
-  { icon: ShoppingCart, value: 180, suffix: '+', label: 'Países Atendidos', prefix: '' },
-  { icon: Percent, value: 99.9, suffix: '%', label: 'Uptime Garantido', prefix: '' },
-]
+const localeMap = { pt: 'pt-BR', en: 'en-US', es: 'es-ES' }
 
-function AnimatedNumber({ value, suffix, prefix }) {
+function AnimatedNumber({ value, suffix, prefix, locale }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
   const [display, setDisplay] = useState(0)
@@ -34,12 +30,20 @@ function AnimatedNumber({ value, suffix, prefix }) {
 
   return (
     <span ref={ref}>
-      {prefix}{display.toLocaleString('pt-BR')}{suffix}
+      {prefix}{display.toLocaleString(locale)}{suffix}
     </span>
   )
 }
 
 export default function Stats() {
+  const { t, language } = useTranslation()
+  const locale = localeMap[language] || 'pt-BR'
+  const stats = [
+    { icon: Users, value: 50000, suffix: '+', label: t('stats.items.clients'), prefix: '' },
+    { icon: TrendingUp, value: 10, suffix: 'M+', label: t('stats.items.transactions'), prefix: '' },
+    { icon: ShoppingCart, value: 180, suffix: '+', label: t('stats.items.countries'), prefix: '' },
+    { icon: Percent, value: 99.9, suffix: '%', label: t('stats.items.uptime'), prefix: '' },
+  ]
   return (
     <section className="stats">
       <div className="container">
@@ -49,14 +53,14 @@ export default function Stats() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="section-badge">Nossos Números</div>
+            <div className="section-badge">{t('stats.badge')}</div>
             <h2 className="section-title">
-              Números que comprovam
+              {t('stats.titleLine1')}
               <br />
-              <span className="gradient-text">nossa excelência</span>
+              <span className="gradient-text">{t('stats.titleLine2')}</span>
             </h2>
             <p className="section-subtitle">
-              A confiança de milhares de empresas ao redor do mundo reflete nosso compromisso com segurança, velocidade e inovação.
+              {t('stats.subtitle')}
             </p>
           </motion.div>
         </div>
@@ -75,7 +79,7 @@ export default function Stats() {
                 <stat.icon size={24} />
               </div>
               <div className="stats__value">
-                <AnimatedNumber value={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
+                <AnimatedNumber value={stat.value} suffix={stat.suffix} prefix={stat.prefix} locale={locale} />
               </div>
               <div className="stats__label">{stat.label}</div>
             </motion.div>

@@ -1,40 +1,18 @@
 import { motion } from 'framer-motion'
 import { CreditCard, QrCode, Receipt, Repeat, Smartphone, Building2 } from 'lucide-react'
+import { useTranslation } from '../i18n/useTranslation'
 
-const solutions = [
-  {
-    icon: CreditCard,
-    title: 'Cartão de Crédito Internacional',
-    description: 'Aceite Visa, Mastercard, Amex e mais bandeiras internacionais com processamento instantâneo.',
-  },
-  {
-    icon: QrCode,
-    title: 'Pix & QR Code',
-    description: 'Pagamentos instantâneos via Pix com geração automática de QR Code para seus clientes.',
-  },
-  {
-    icon: Receipt,
-    title: 'Boleto Bancário',
-    description: 'Gere boletos com registro automático e conciliação bancária integrada ao seu sistema.',
-  },
-  {
-    icon: Repeat,
-    title: 'Pagamentos Recorrentes',
-    description: 'Assinaturas e cobranças recorrentes automatizadas com gestão completa de planos.',
-  },
-  {
-    icon: Smartphone,
-    title: 'Link de Pagamento',
-    description: 'Crie links de pagamento personalizados e compartilhe por WhatsApp, e-mail ou redes sociais.',
-  },
-  {
-    icon: Building2,
-    title: 'Split de Pagamento',
-    description: 'Divida pagamentos entre múltiplos recebedores de forma automática e transparente.',
-  },
+const solutionMeta = [
+  { key: 'creditCard', icon: CreditCard },
+  { key: 'pix', icon: QrCode },
+  { key: 'boleto', icon: Receipt },
+  { key: 'recurring', icon: Repeat },
+  { key: 'link', icon: Smartphone },
+  { key: 'split', icon: Building2 },
 ]
 
 export default function Solutions() {
+  const { t } = useTranslation()
   return (
     <section id="solutions" className="solutions">
       <div className="solutions__glow" />
@@ -45,23 +23,22 @@ export default function Solutions() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="section-badge">Soluções de Pagamento</div>
+            <div className="section-badge">{t('solutions.badge')}</div>
             <h2 className="section-title">
-              Mais do que uma plataforma,
+              {t('solutions.titleLine1')}
               <br />
-              <span className="gradient-text">um parceiro de sucesso</span>
+              <span className="gradient-text">{t('solutions.titleLine2')}</span>
             </h2>
             <p className="section-subtitle">
-              Entendemos que vender online vai além de colocar um produto no ar.
-              É sobre ter estrutura, apoio e ferramentas que realmente funcionam.
+              {t('solutions.subtitle')}
             </p>
           </motion.div>
         </div>
 
         <div className="solutions__grid">
-          {solutions.map((solution, i) => (
+          {solutionMeta.map((solution, i) => (
             <motion.div
-              key={i}
+              key={solution.key}
               className="solutions__card"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -72,9 +49,9 @@ export default function Solutions() {
                 <div className="solutions__card-icon">
                   <solution.icon size={22} />
                 </div>
-                <h3>{solution.title}</h3>
+                <h3>{t(`solutions.items.${solution.key}.title`)}</h3>
               </div>
-              <p>{solution.description}</p>
+              <p>{t(`solutions.items.${solution.key}.description`)}</p>
             </motion.div>
           ))}
         </div>

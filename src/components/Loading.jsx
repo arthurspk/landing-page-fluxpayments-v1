@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import logoPrincipal from '../assets/logos/logo-principal.png'
+import { useTranslation } from '../i18n/useTranslation'
 
 export default function Loading({ onFinish }) {
+  const { t } = useTranslation()
   const [progress, setProgress] = useState(0)
   const [visible, setVisible] = useState(true)
 
@@ -100,7 +102,7 @@ export default function Loading({ onFinish }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.5 }}
             >
-              {progress < 100 ? 'Carregando...' : 'Pronto!'}
+              {progress < 100 ? t('loading.loading') : t('loading.ready')}
             </motion.p>
           </div>
 

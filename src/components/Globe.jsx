@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react'
 import createGlobe from 'cobe'
 import { motion } from 'framer-motion'
+import { useTranslation } from '../i18n/useTranslation'
 
 export default function GlobeSection() {
+  const { t } = useTranslation()
   const canvasRef = useRef(null)
   const pointerInteracting = useRef(null)
   const pointerInteractionMovement = useRef(0)
@@ -87,34 +89,32 @@ export default function GlobeSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <div className="section-badge">Cobertura Global</div>
+            <div className="section-badge">{t('globe.badge')}</div>
             <h2 className="section-title">
-              Seu negócio conectado
+              {t('globe.titleLine1')}
               <br />
-              <span className="gradient-text">ao mundo inteiro</span>
+              <span className="gradient-text">{t('globe.titleLine2')}</span>
             </h2>
             <p className="section-subtitle">
-              Com a Flux Payments, você aceita pagamentos de mais de 180 países,
-              em múltiplas moedas, com conversão automática e as melhores taxas
-              do mercado internacional.
+              {t('globe.subtitle')}
             </p>
 
             <div className="globe-section__highlights">
               <div className="globe-section__highlight">
                 <div className="globe-section__highlight-dot" />
-                <span>Américas, Europa e Ásia</span>
+                <span>{t('globe.highlights.regions')}</span>
               </div>
               <div className="globe-section__highlight">
                 <div className="globe-section__highlight-dot" />
-                <span>+35 moedas suportadas</span>
+                <span>{t('globe.highlights.currencies')}</span>
               </div>
               <div className="globe-section__highlight">
                 <div className="globe-section__highlight-dot" />
-                <span>Conversão automática</span>
+                <span>{t('globe.highlights.conversion')}</span>
               </div>
               <div className="globe-section__highlight">
                 <div className="globe-section__highlight-dot" />
-                <span>Liquidação em até 24h</span>
+                <span>{t('globe.highlights.settlement')}</span>
               </div>
             </div>
           </motion.div>

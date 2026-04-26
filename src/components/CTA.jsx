@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, CheckCircle2, Headphones, Clock } from 'lucide-react'
+import { useTranslation } from '../i18n/useTranslation'
 
 export default function CTA() {
+  const { t } = useTranslation()
   return (
     <section id="cta" className="cta">
       <div className="cta__glow-1" />
@@ -21,7 +23,7 @@ export default function CTA() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.15 }}
             >
-              <div className="section-badge">Comece Hoje Mesmo</div>
+              <div className="section-badge">{t('cta.badge')}</div>
             </motion.div>
             <motion.h2
               className="section-title"
@@ -30,9 +32,9 @@ export default function CTA() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.25 }}
             >
-              Pronto para começar
+              {t('cta.titleLine1')}
               <br />
-              <span className="gradient-text">sua jornada global?</span>
+              <span className="gradient-text">{t('cta.titleLine2')}</span>
             </motion.h2>
             <motion.p
               className="section-subtitle"
@@ -41,8 +43,7 @@ export default function CTA() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.35 }}
             >
-              Junte-se a mais de <strong>50.000 empresas</strong> que já estão
-              faturando alto com a Flux Payments.
+              {t('cta.subtitleBefore')}<strong>{t('cta.subtitleStrong')}</strong>{t('cta.subtitleAfter')}
             </motion.p>
 
             <motion.a
@@ -55,7 +56,7 @@ export default function CTA() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.45 }}
             >
-              Falar com Especialista <ArrowRight size={18} />
+              {t('cta.button')} <ArrowRight size={18} />
             </motion.a>
 
             <motion.div
@@ -67,15 +68,15 @@ export default function CTA() {
             >
               <div className="cta__feature">
                 <CheckCircle2 size={16} />
-                <span>Sem taxas de setup</span>
+                <span>{t('cta.features.noFees')}</span>
               </div>
               <div className="cta__feature">
                 <Clock size={16} />
-                <span>Comece quando quiser</span>
+                <span>{t('cta.features.anytime')}</span>
               </div>
               <div className="cta__feature">
                 <Headphones size={16} />
-                <span>Suporte 24/7</span>
+                <span>{t('cta.features.support')}</span>
               </div>
             </motion.div>
           </div>

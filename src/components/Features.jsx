@@ -7,47 +7,19 @@ import {
   FileCheck,
   Code2
 } from 'lucide-react'
+import { useTranslation } from '../i18n/useTranslation'
 
-const features = [
-  {
-    icon: CreditCard,
-    title: 'Checkout Otimizado',
-    description: 'Conversão de alto nível com múltiplas formas de pagamento, aceite cartões e e-wallets internacionais.',
-    color: '#3b82f6',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Pagamentos Seguros',
-    description: 'Processamento seguro com criptografia de ponta, certificação PCI-DSS e proteção contra fraudes.',
-    color: '#60a5fa',
-  },
-  {
-    icon: Globe,
-    title: 'Vendas Globais',
-    description: 'Alcance clientes em mais de 180 países com suporte a múltiplas moedas e métodos de pagamento locais.',
-    color: '#2563eb',
-  },
-  {
-    icon: BarChart3,
-    title: 'Analytics Completo',
-    description: 'Dashboard detalhado para acompanhar todas as suas métricas de vendas e conversão em tempo real.',
-    color: '#1d4ed8',
-  },
-  {
-    icon: FileCheck,
-    title: 'Conformidade Regulatória',
-    description: 'Esteja sempre em conformidade com as principais normas e leis financeiras internacionais.',
-    color: '#1e40af',
-  },
-  {
-    icon: Code2,
-    title: 'API Escalável',
-    description: 'Integração fácil com as principais plataformas e-commerce e sistemas personalizados via API RESTful.',
-    color: '#3b82f6',
-  },
+const featureMeta = [
+  { key: 'checkout', icon: CreditCard, color: '#3b82f6' },
+  { key: 'secure', icon: ShieldCheck, color: '#60a5fa' },
+  { key: 'global', icon: Globe, color: '#2563eb' },
+  { key: 'analytics', icon: BarChart3, color: '#1d4ed8' },
+  { key: 'compliance', icon: FileCheck, color: '#1e40af' },
+  { key: 'api', icon: Code2, color: '#3b82f6' },
 ]
 
 export default function Features() {
+  const { t } = useTranslation()
   return (
     <section id="features" className="features">
       <div className="container">
@@ -57,23 +29,22 @@ export default function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="section-badge">Recursos Completos</div>
+            <div className="section-badge">{t('features.badge')}</div>
             <h2 className="section-title">
-              Tudo que você precisa para
+              {t('features.titleLine1')}
               <br />
-              <span className="gradient-text">escalar seu negócio</span>
+              <span className="gradient-text">{t('features.titleLine2')}</span>
             </h2>
             <p className="section-subtitle">
-              Uma suite completa de ferramentas para aceitar pagamentos internacionais
-              com segurança e eficiência.
+              {t('features.subtitle')}
             </p>
           </motion.div>
         </div>
 
         <div className="features__grid">
-          {features.map((feature, i) => (
+          {featureMeta.map((feature, i) => (
             <motion.div
-              key={i}
+              key={feature.key}
               className="features__card"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -83,8 +54,8 @@ export default function Features() {
               <div className="features__card-icon" style={{ '--icon-color': feature.color }}>
                 <feature.icon size={24} />
               </div>
-              <h3 className="features__card-title">{feature.title}</h3>
-              <p className="features__card-desc">{feature.description}</p>
+              <h3 className="features__card-title">{t(`features.items.${feature.key}.title`)}</h3>
+              <p className="features__card-desc">{t(`features.items.${feature.key}.description`)}</p>
             </motion.div>
           ))}
         </div>

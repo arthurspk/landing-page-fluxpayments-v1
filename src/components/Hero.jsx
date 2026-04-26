@@ -1,21 +1,18 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, Play, Shield, Zap, Globe } from 'lucide-react'
-
-const typewriterWords = [
-  'CRESÇA SEM LIMITES',
-  'VENDA PARA O MUNDO',
-  'ESCALE SEU NEGÓCIO',
-  'RECEBA DE QUALQUER LUGAR',
-]
+import { useTranslation } from '../i18n/useTranslation'
 
 function Typewriter() {
+  const { t } = useTranslation()
+  const typewriterWords = t('hero.typewriter')
   const [wordIndex, setWordIndex] = useState(0)
   const [text, setText] = useState('')
   const [isDeleting, setIsDeleting] = useState(false)
 
   useEffect(() => {
     const currentWord = typewriterWords[wordIndex]
+    if (!currentWord) return
     let timeout
 
     if (!isDeleting) {
@@ -36,7 +33,7 @@ function Typewriter() {
     }
 
     return () => clearTimeout(timeout)
-  }, [text, isDeleting, wordIndex])
+  }, [text, isDeleting, wordIndex, typewriterWords])
 
   return (
     <span className="hero__title-gradient">
@@ -47,6 +44,7 @@ function Typewriter() {
 }
 
 export default function Hero() {
+  const { t, language } = useTranslation()
   return (
     <section id="hero" className="hero">
       <div className="hero__bg">
@@ -63,7 +61,7 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
           className="hero__badge-wrapper"
         >
-          <div className="section-badge">Sua plataforma de pagamentos</div>
+          <div className="section-badge">{t('hero.badge')}</div>
         </motion.div>
 
         <motion.h1
@@ -72,9 +70,9 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
         >
-          RECEBA GLOBAL,
+          {t('hero.titleLine1')}
           <br />
-          <Typewriter />
+          <Typewriter key={language} />
         </motion.h1>
 
         <motion.p
@@ -83,8 +81,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          A plataforma de pagamentos internacionais que conecta seu negócio ao mundo.
-          Aceite pagamentos de qualquer lugar com segurança, rapidez e as melhores taxas.
+          {t('hero.subtitle')}
         </motion.p>
 
         <motion.div
@@ -94,10 +91,10 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <a href="https://wa.me/16475755252" target="_blank" rel="noopener noreferrer" className="btn-primary">
-            Entrar em Contato <ArrowRight size={18} />
+            {t('hero.ctaPrimary')} <ArrowRight size={18} />
           </a>
           <a href="#features" className="btn-secondary">
-            <Play size={16} /> Começar Agora
+            <Play size={16} /> {t('hero.ctaSecondary')}
           </a>
         </motion.div>
 
@@ -109,15 +106,15 @@ export default function Hero() {
         >
           <div className="hero__badge-item">
             <Shield size={16} />
-            <span>100% Seguro</span>
+            <span>{t('hero.badges.secure')}</span>
           </div>
           <div className="hero__badge-item">
             <Zap size={16} />
-            <span>Saque Rápido</span>
+            <span>{t('hero.badges.fast')}</span>
           </div>
           <div className="hero__badge-item">
             <Globe size={16} />
-            <span>+180 Países</span>
+            <span>{t('hero.badges.countries')}</span>
           </div>
         </motion.div>
       </div>

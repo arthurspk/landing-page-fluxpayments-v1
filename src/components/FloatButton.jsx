@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react'
 import { MessageCircle, X, ArrowUp } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslation } from '../i18n/useTranslation'
 
 export default function FloatButton() {
+  const { t } = useTranslation()
   const [showChat, setShowChat] = useState(false)
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [message, setMessage] = useState('')
 
   const sendToWhatsApp = () => {
-    const text = encodeURIComponent(message || 'Olá, quero saber mais sobre a Flux Payments!')
+    const text = encodeURIComponent(message || t('floatButton.defaultMessage'))
     window.open(`https://wa.me/16475755252?text=${text}`, '_blank')
     setMessage('')
   }
@@ -36,7 +38,7 @@ export default function FloatButton() {
               exit={{ opacity: 0, scale: 0.8 }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              aria-label="Voltar ao topo"
+              aria-label={t('floatButton.scrollTop')}
             >
               <ArrowUp size={20} />
             </motion.button>
@@ -48,7 +50,7 @@ export default function FloatButton() {
           onClick={() => setShowChat(!showChat)}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          aria-label="Chat"
+          aria-label={t('floatButton.chat')}
         >
           {showChat ? <X size={24} /> : <MessageCircle size={24} />}
         </motion.button>
@@ -66,28 +68,28 @@ export default function FloatButton() {
               <div className="float-chat__header-info">
                 <div className="float-chat__avatar">F</div>
                 <div>
-                  <div className="float-chat__name">Flux Payments</div>
-                  <div className="float-chat__status">Online agora</div>
+                  <div className="float-chat__name">{t('floatButton.name')}</div>
+                  <div className="float-chat__status">{t('floatButton.status')}</div>
                 </div>
               </div>
-              <button onClick={() => setShowChat(false)} className="float-chat__close">
+              <button onClick={() => setShowChat(false)} className="float-chat__close" aria-label={t('floatButton.close')}>
                 <X size={18} />
               </button>
             </div>
             <div className="float-chat__body">
               <div className="float-chat__message">
-                <p>Olá! Como podemos ajudar você hoje? Estamos prontos para tirar todas as suas dúvidas sobre pagamentos internacionais.</p>
+                <p>{t('floatButton.welcome')}</p>
               </div>
             </div>
             <div className="float-chat__footer">
               <input
                 type="text"
-                placeholder="Digite sua mensagem..."
+                placeholder={t('floatButton.placeholder')}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && sendToWhatsApp()}
               />
-              <button className="float-chat__send" onClick={sendToWhatsApp}>Enviar</button>
+              <button className="float-chat__send" onClick={sendToWhatsApp}>{t('floatButton.send')}</button>
             </div>
           </motion.div>
         )}

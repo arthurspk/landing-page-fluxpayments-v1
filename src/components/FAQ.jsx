@@ -1,37 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-
-const faqs = [
-  {
-    question: 'O que é a Flux Payments e para quem ela serve?',
-    answer: 'A Flux Payments é um gateway internacional de pagamentos que permite que empresas e empreendedores aceitem pagamentos de clientes em mais de 180 países. Ideal para e-commerces, SaaS, marketplaces e qualquer negócio que queira vender globalmente.',
-  },
-  {
-    question: 'Quais formas de pagamento são aceitas?',
-    answer: 'Aceitamos cartões de crédito internacionais (Visa, Mastercard, Amex), Pix, boleto bancário, e-wallets, transferências bancárias e pagamentos recorrentes. Suportamos mais de 35 moedas diferentes.',
-  },
-  {
-    question: 'Preciso ter um CNPJ ou é necessário CNPJ?',
-    answer: 'Sim, para operar como empresa e receber pagamentos, é necessário possuir um CNPJ ativo. Aceitamos desde MEI até grandes corporações.',
-  },
-  {
-    question: 'Qual o prazo de liquidação dos valores?',
-    answer: 'O prazo padrão de liquidação é de D+1 para Pix e D+2 para cartões de crédito. Oferecemos também opções de antecipação com taxas competitivas.',
-  },
-  {
-    question: 'A Flux Payments é segura?',
-    answer: 'Sim! Possuímos certificação PCI-DSS Level 1, criptografia de ponta a ponta, sistema anti-fraude com inteligência artificial e monitoramento 24/7. Seus dados e os dados dos seus clientes estão sempre protegidos.',
-  },
-  {
-    question: 'Como funciona a integração via API?',
-    answer: 'Nossa API RESTful é simples e bem documentada. Oferecemos SDKs para as principais linguagens (Python, Node.js, PHP, Ruby) e plugins para plataformas como Shopify, WooCommerce e Magento. A integração pode ser feita em minutos.',
-  },
-  {
-    question: 'Quanto tempo demora para minha conta ser verificada?',
-    answer: 'O processo de verificação é rápido. Após enviar a documentação necessária, sua conta é analisada em até 24 horas úteis. Em muitos casos, a aprovação acontece em poucas horas.',
-  },
-]
+import { useTranslation } from '../i18n/useTranslation'
 
 function FAQItem({ faq, isOpen, onToggle, index }) {
   return (
@@ -67,7 +37,9 @@ function FAQItem({ faq, isOpen, onToggle, index }) {
 }
 
 export default function FAQ() {
+  const { t } = useTranslation()
   const [openIndex, setOpenIndex] = useState(0)
+  const faqs = t('faq.items') || []
 
   return (
     <section id="faq" className="faq">
@@ -79,15 +51,14 @@ export default function FAQ() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <div className="section-badge">Dúvidas Frequentes</div>
+            <div className="section-badge">{t('faq.badge')}</div>
             <h2 className="section-title">
-              Tem dúvidas?
+              {t('faq.titleLine1')}
               <br />
-              <span className="gradient-text">Nós temos as respostas.</span>
+              <span className="gradient-text">{t('faq.titleLine2')}</span>
             </h2>
             <p className="section-subtitle">
-              Respondemos as perguntas mais frequentes sobre nossos serviços.
-              Caso precise de mais ajuda, entre em contato.
+              {t('faq.subtitle')}
             </p>
           </motion.div>
 

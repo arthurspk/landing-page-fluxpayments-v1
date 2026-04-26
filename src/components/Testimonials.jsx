@@ -1,28 +1,10 @@
 import { motion } from 'framer-motion'
 import { Star } from 'lucide-react'
-
-const testimonials = [
-  {
-    name: 'Maria Silva',
-    role: 'CEO, Digital Commerce',
-    text: 'A plataforma transformou meu negócio digital. Em 3 meses, multipliquei meus resultados por 5x. O suporte internacional é excepcional.',
-    rating: 5,
-  },
-  {
-    name: 'João Santos',
-    role: 'CTO, TechPay Solutions',
-    text: 'Melhor decisão que tomei foi migrar para a Flux Payments. Suporte excepcional, ferramentas incríveis e taxas muito competitivas.',
-    rating: 5,
-  },
-  {
-    name: 'Ana Costa',
-    role: 'Fundadora, ShopGlobal',
-    text: 'Consegui automatizar todo meu processo de vendas internacionais. A integração via API é realmente impecável e o suporte 24/7 faz toda diferença.',
-    rating: 5,
-  },
-]
+import { useTranslation } from '../i18n/useTranslation'
 
 export default function Testimonials() {
+  const { t } = useTranslation()
+  const testimonials = t('testimonials.items') || []
   return (
     <section id="testimonials" className="testimonials">
       <div className="container">
@@ -32,14 +14,14 @@ export default function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="section-badge">Avaliação de Clientes</div>
+            <div className="section-badge">{t('testimonials.badge')}</div>
             <h2 className="section-title">
-              O que nossos
+              {t('testimonials.titleLine1')}
               <br />
-              <span className="gradient-text">clientes dizem</span>
+              <span className="gradient-text">{t('testimonials.titleLine2')}</span>
             </h2>
             <p className="section-subtitle">
-              Milhares de empresas já transformaram seus negócios com nossa plataforma de pagamentos internacionais.
+              {t('testimonials.subtitle')}
             </p>
           </motion.div>
         </div>
@@ -55,7 +37,7 @@ export default function Testimonials() {
               transition={{ duration: 0.5, delay: i * 0.15 }}
             >
               <div className="testimonials__stars">
-                {Array.from({ length: testimonial.rating }).map((_, j) => (
+                {Array.from({ length: 5 }).map((_, j) => (
                   <Star key={j} size={16} fill="#3b82f6" color="#3b82f6" />
                 ))}
               </div>

@@ -1,21 +1,13 @@
 import { motion } from "framer-motion";
 import { Globe, Link2, MessageSquare, Send } from "lucide-react";
 import logoPrincipal from "../assets/logos/logo-principal.png";
+import { useTranslation } from "../i18n/useTranslation";
 
-const footerLinks = {
-  Produto: [
-    "Checkout",
-    "Pagamentos",
-    "Recorrência",
-    "Split",
-    "Link de Pagamento",
-  ],
-  Empresa: ["Sobre nós", "Carreiras", "Blog", "Contato"],
-  Suporte: ["Central de Ajuda", "Documentação", "Status da API", "Comunidade"],
-  Legal: ["Termos de Uso", "Privacidade", "Compliance", "PCI-DSS"],
-};
+const sectionKeys = ["product", "company", "support", "legal"];
 
 export default function Footer() {
+  const { t } = useTranslation();
+  const bottomLinks = t("footer.bottomLinks") || [];
   return (
     <footer className="footer">
       <div className="container">
@@ -35,45 +27,47 @@ export default function Footer() {
               />
             </a>
             <p className="footer__description">
-              A plataforma internacional de pagamentos para transformar seu
-              negócio em uma operação global, segura e escalável.
+              {t("footer.description")}
             </p>
             <div className="footer__social">
-              <a href="#" aria-label="Instagram">
+              <a href="#" aria-label={t("footer.social.instagram")}>
                 <Globe size={18} />
               </a>
-              <a href="#" aria-label="LinkedIn">
+              <a href="#" aria-label={t("footer.social.linkedin")}>
                 <Link2 size={18} />
               </a>
-              <a href="#" aria-label="Twitter">
+              <a href="#" aria-label={t("footer.social.twitter")}>
                 <Send size={18} />
               </a>
-              <a href="#" aria-label="Contato">
+              <a href="#" aria-label={t("footer.social.contact")}>
                 <MessageSquare size={18} />
               </a>
             </div>
           </motion.div>
 
           <div className="footer__links">
-            {Object.entries(footerLinks).map(([title, links], i) => (
-              <motion.div
-                key={title}
-                className="footer__column"
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
-              >
-                <h4>{title}</h4>
-                <ul>
-                  {links.map((link) => (
-                    <li key={link}>
-                      <a href="#">{link}</a>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
+            {sectionKeys.map((key, i) => {
+              const links = t(`footer.sections.${key}.links`) || [];
+              return (
+                <motion.div
+                  key={key}
+                  className="footer__column"
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
+                >
+                  <h4>{t(`footer.sections.${key}.title`)}</h4>
+                  <ul>
+                    {links.map((link) => (
+                      <li key={link}>
+                        <a href="#">{link}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
@@ -86,15 +80,14 @@ export default function Footer() {
         >
           <div className="footer__copyright">
             <p>
-              &copy; {new Date().getFullYear()} Flux Payments - Todos os
-              direitos reservados.
+              &copy; {new Date().getFullYear()} Flux Payments - {t("footer.copyright")}
             </p>
-            <p className="footer__cnpj">CNPJ: 64.776.265/0001-69</p>
+            <p className="footer__cnpj">{t("footer.cnpj")}</p>
           </div>
           <div className="footer__bottom-links">
-            <a href="#">Termos de Uso</a>
-            <a href="#">Privacidade</a>
-            <a href="#">Cookies</a>
+            {bottomLinks.map((link) => (
+              <a key={link} href="#">{link}</a>
+            ))}
           </div>
         </motion.div>
       </div>

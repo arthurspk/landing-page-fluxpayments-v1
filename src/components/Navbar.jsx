@@ -1,18 +1,21 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import logoPrincipal from '../assets/logos/logo-principal.png'
-
-const navLinks = [
-  { label: 'Início', href: '#hero' },
-  { label: 'Benefícios', href: '#features' },
-  { label: 'Soluções', href: '#solutions' },
-  { label: 'Global', href: '#globe' },
-  { label: 'FAQ', href: '#faq' },
-]
+import LanguageSelector from './LanguageSelector'
+import { useTranslation } from '../i18n/useTranslation'
 
 export default function Navbar() {
+  const { t } = useTranslation()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+
+  const navLinks = [
+    { label: t('navbar.links.home'), href: '#hero' },
+    { label: t('navbar.links.features'), href: '#features' },
+    { label: t('navbar.links.solutions'), href: '#solutions' },
+    { label: t('navbar.links.globe'), href: '#globe' },
+    { label: t('navbar.links.faq'), href: '#faq' },
+  ]
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -40,7 +43,7 @@ export default function Navbar() {
           <button
             className="navbar__close-mobile"
             onClick={() => setMobileOpen(false)}
-            aria-label="Fechar menu"
+            aria-label={t('navbar.closeMenu')}
           >
             <X size={28} />
           </button>
@@ -51,17 +54,23 @@ export default function Navbar() {
           ))}
           <li className="navbar__mobile-cta">
             <a href="https://wa.me/16475755252" target="_blank" rel="noopener noreferrer" className="btn-primary" onClick={() => setMobileOpen(false)}>
-              Entrar em Contato
+              {t('common.contact')}
             </a>
+          </li>
+          <li className="navbar__mobile-lang">
+            <LanguageSelector variant="mobile" />
           </li>
         </ul>
 
         <div className="navbar__actions">
-          <a href="https://wa.me/16475755252" target="_blank" rel="noopener noreferrer" className="btn-primary navbar__cta">Entrar em Contato</a>
+          <LanguageSelector variant="desktop" />
+          <a href="https://wa.me/16475755252" target="_blank" rel="noopener noreferrer" className="btn-primary navbar__cta">
+            {t('common.contact')}
+          </a>
           <button
             className="navbar__toggle"
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Menu"
+            aria-label={t('navbar.menu')}
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -151,6 +160,10 @@ export default function Navbar() {
           display: none;
         }
 
+        .navbar__mobile-lang {
+          display: none;
+        }
+
         @media (max-width: 768px) {
           .navbar__links {
             position: fixed;
@@ -208,6 +221,11 @@ export default function Navbar() {
           .navbar__mobile-cta .btn-primary {
             padding: 14px 40px !important;
             font-size: 15px !important;
+          }
+
+          .navbar__mobile-lang {
+            display: block;
+            margin-top: 16px;
           }
 
           .navbar__toggle {

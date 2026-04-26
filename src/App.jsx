@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { LanguageProvider } from './i18n/LanguageContext'
 import Loading from './components/Loading'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -17,7 +18,7 @@ function App() {
   const [loaded, setLoaded] = useState(false)
 
   return (
-    <>
+    <LanguageProvider>
       <Loading onFinish={() => setLoaded(true)} />
       {loaded && (
         <>
@@ -34,7 +35,7 @@ function App() {
           <FloatButton />
         </>
       )}
-    </>
+    </LanguageProvider>
   )
 }
 
